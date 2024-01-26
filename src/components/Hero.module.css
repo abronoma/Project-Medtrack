@@ -16,8 +16,10 @@
 
 .pharm img {
   width: 80%;
-  height: 30rem;
+  height: 26rem;
   flex-basis: 50%;
+  border-radius: 10px;
+  margin: 3rem 0;
 }
 
 .links {

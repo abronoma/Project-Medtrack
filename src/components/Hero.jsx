@@ -10,10 +10,6 @@ export default function Hero() {
       <div className={style.maintext}>
         <div className={style.text}>
         <h1>Health Records For All</h1>
-        <div className={style.links}>
-          <p>Laboratory</p>
-          <p>Pharmacy</p>
-        </div>
         </div>
       </div>
       
