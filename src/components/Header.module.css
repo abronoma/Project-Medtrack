@@ -1,0 +1,35 @@
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 1rem;
+    text-align: center;
+}
+
+.nav_items {
+    display: flex;
+    flex: 1;
+    gap: 2rem;    
+    align-items: center;
+    justify-content: space-around;
+}
+
+.nav_items p {
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.nav_items p:hover {
+    background-color: #02AD68;
+}
+
+.logo img {
+    border: #fff 2px solid;
+    border-radius: 4px;
+}
+
+.logo {
+    /* flex: 0 0 30%; */
+    display: flex;
+    margin-left: 8rem;
+}
