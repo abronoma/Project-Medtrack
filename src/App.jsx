@@ -1,6 +1,8 @@
-import Header from "./components/Header";
-import Hero from "./components/Hero";
+import React from "react";
+import Header from "./components/landing/Header";
+import Hero from "./components/landing/Hero";
 // import { ReactDOM } from "react";
+
 
 
 function App() {
