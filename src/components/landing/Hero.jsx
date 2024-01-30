@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./Hero.module.css";
-import pharm from "../assets/images/pharm.jpg";
+import pharm from "../../assets/images/pharm.jpg";
 // import { ReactDOM } from "react-dom";
 // import Router from 'react-router-dom'
 
