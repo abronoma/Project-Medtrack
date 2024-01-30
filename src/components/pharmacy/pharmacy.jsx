@@ -1,10 +1,12 @@
-import React from 'react'
-import Table from './Table'
+import React from "react";
+import PharmacyForm from './Form'
+import Table from "./Table";
 
 export default function Pharmacy() {
   return (
     <div>
-        <Table />
+      <PharmacyForm />
+      <Table />
     </div>
-  )
+  );
 }

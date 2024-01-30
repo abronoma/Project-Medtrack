@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import style from './Form.module.css';
-import LabStatistics from './stat';
+import PharmacyStatistics from '../stat';
 
-function labForm() {
+function PharmacyForm() {
   const [form, setForm] = useState({
     drugName: '',
     description: '',
@@ -91,10 +91,10 @@ function labForm() {
     <div>
      <button>ADD</button>
     </div>
-    <LabStatistics/>
+    <PharmacyStatistics/>
     </div>
     </>
   );
 }
 
-export default labForm;
+export default PharmacyForm;
