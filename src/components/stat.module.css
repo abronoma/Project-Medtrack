@@ -1,0 +1,8 @@
+.labstat {
+    height: 15rem;
+    width: 24rem;
+    border: 0.5 solid grey;
+    border-radius: 4px;
+background-color: white;
+margin-top: 5rem;
+}
