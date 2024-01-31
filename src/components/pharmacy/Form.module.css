@@ -1,35 +1,31 @@
-.label{
-
-                display: flex;
-                flex-direction: row;
-                gap: 5px;
-                border: 2px solid black;
-                color: black;
-                background: white;
-                padding: 15px;
-                width: 107px;
-                text-align: center;
-            
-    
+.label {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  border: 2px solid black;
+  color: black;
+  background: white;
+  padding: 15px;
+  width: 107px;
+  text-align: center;
 }
 
 .dflex {
-        display: flex;
-       gap: 100px;
+  display: flex;
+  gap: 100px;
 }
 .marginBottom {
-margin-bottom: 10px;
-display: flex
+  margin-bottom: 10px;
+  display: flex;
 }
 
-.input{ 
- margin-left: 5px;
- width:50%;
-        height: 51px;
-            
+.input {
+  margin-left: 5px;
+  width: 50%;
+  height: 51px;
 }
 
-.formdiv{
-        display: flex;
-        flex-direction: row;
+.formdiv {
+  display: flex;
+  flex-direction: row;
 }

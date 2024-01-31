@@ -1,4 +1,5 @@
 import React from "react";
+import style from './Table.module.css'
 import { pharmacyData } from "../../data/dummy.js";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaRegEdit } from "react-icons/fa";
@@ -7,7 +8,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 export default function Table() {
   return (
-    <div>
+    <div className={style.table_container}>
       <table>
         <thead>
           <tr>
@@ -27,10 +28,10 @@ export default function Table() {
               <td>{item.unitOfPricing}</td>
               <td>{item.drugCode}</td>
               <td>{item.price}</td>
-              <td>
+              <td className={style.btns}>
                 <button><MdOutlineRemoveRedEye/></button>
-                <button><RiDeleteBin6Line/></button>
                 <button><FaRegEdit/></button>
+                <button><RiDeleteBin6Line/></button>
               </td>
             </tr>
           ))}
