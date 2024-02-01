@@ -4,11 +4,13 @@ import Hero from "./components/landing/Hero";
 import Pharmacy from "./components/pharmacy/pharmacy";
 import Lab from "./components/laboratory/laboratory";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Helmet } from "react-helmet";
+// import logo from '../public/'
 // import { ReactDOM } from "react";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Home />,
     children: [
       {
@@ -16,20 +18,27 @@ const router = createBrowserRouter([
         element: <Hero />,
       },
       {
-        path: '/pharmacy',
+        path: "/pharmacy",
         element: <Pharmacy />,
       },
       {
-        path: '/laboratory',
+        path: "/laboratory",
         element: <Lab />,
-      }
-    ]
-  }
-])
-
+      },
+    ],
+  },
+]);
 
 function App() {
-  return <RouterProvider router={router}/>
+  return (
+    <div>
+      <RouterProvider router={router} />
+      <Helmet>
+        <title>Medtrack</title>
+        <link rel="icon" href="../public/medtrack.png" type="image/png" />
+      </Helmet>
+    </div>
+  );
 }
 
 export default App;
