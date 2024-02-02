@@ -1,0 +1,51 @@
+.table_container {
+    display: flex;
+    padding: 3rem 0;
+    margin: 0 auto;
+    /* background-color: #fff;
+     */
+}
+
+.table_container table{
+    width: 100%;
+    border: 2px solid #fff;
+    border-collapse: collapse;
+  }
+
+table thead {
+    border: 2px solid #fff;
+
+}
+
+table thead tr th{
+    padding: 1rem 2rem;
+    color: rgb(154, 196, 223);
+    font-size: 1rem;
+  }
+
+  table tbody tr td{
+    padding: 1rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+  }
+
+  .btns {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btns button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 8px 16px; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 4px; 
+}
+
+.btns button:hover {
+    background-color: #fff;
+    color: #3498db;
+  }

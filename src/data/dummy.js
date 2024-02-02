@@ -1,4 +1,4 @@
-import { PharmacyInventory } from "../pages/pharmacy-inventory/data-view/types";
+// import { PharmacyInventory } from "../pages/pharmacy-inventory/data-view/types";
 
 export const pharmacyData = [
   {
@@ -11,7 +11,7 @@ export const pharmacyData = [
   },
   {
     id: 2,
-    drugName: "Condom",
+    drugName: "Ponstan",
     drugCode: 224584,
     description: "this is a drug",
     unitOfPricing: "Ghc",
