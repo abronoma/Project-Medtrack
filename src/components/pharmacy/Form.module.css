@@ -11,21 +11,27 @@
 }
 
 .dflex {
-  display: flex;
-  gap: 100px;
+        display: flex;
+       gap: 100px;
 }
+
 .marginBottom {
-  margin-bottom: 10px;
-  display: flex;
+margin-bottom: 10px;
+display: flex
 }
 
-.input {
-  margin-left: 5px;
-  width: 50%;
-  height: 51px;
+.input{ 
+ margin-left: 5px;
+ width:50%;
+        height: 51px;
+            
 }
 
-.formdiv {
-  display: flex;
-  flex-direction: row;
+.inputtext {
+        opacity: 0.5;
+}
+
+.formdiv{
+        display: flex;
+        flex-direction: row;
 }

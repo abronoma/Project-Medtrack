@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import style from './Form.module.css';
 import PharmacyStatistics from '../stat';
+import SearchButton from '../searchButton';
 
 function PharmacyForm() {
   const [form, setForm] = useState({
@@ -31,7 +32,9 @@ function PharmacyForm() {
     <form onSubmit={handleSubmit}>
     
       <div className={ style.marginBottom }>
-       <label htmlFor="drugName" className={ style.label }>Drug Name:</label>
+       <label htmlFor="drugName" 
+       className={ style.label }>Drug Name:
+       </label>
        <input
           type="text"
           className= { style.input }
@@ -39,6 +42,7 @@ function PharmacyForm() {
           name="drugName"
           value={form.drugName}
           onChange={handleChange}
+          placeholder='Type drug name here'
         />
       </div>
     
@@ -51,6 +55,7 @@ function PharmacyForm() {
           name="description"
           value={form.description}
           onChange={handleChange}
+          placeholder='Lorem ipsum with little information'
         />
       </div>
       <div className={ style.marginBottom }>
@@ -62,6 +67,7 @@ function PharmacyForm() {
           name="unitOfPricing"
           value={form.unitOfPricing}
           onChange={handleChange}
+          placeholder='Tabel'
         />
       </div>
       <div className={ style.marginBottom }>
@@ -73,6 +79,7 @@ function PharmacyForm() {
           name="drugCode"
           value={form.drugCode}
           onChange={handleChange}
+          placeholder='Aoc123FH'
         />
       </div>
       <div className={ style.marginBottom }>
@@ -84,13 +91,24 @@ function PharmacyForm() {
           name="price"
           value={form.price}
           onChange={handleChange}
+          placeholder='2.02'
         />
-      </div>
+
+
+    
+      <button className={ style.addButton}>ADD</button>
       
+  
+      </div>
+     
+    
     </form>
+   
+
     <div>
-     <button>ADD</button>
+      <SearchButton/>
     </div>
+   
     <PharmacyStatistics/>
     </div>
     </>
