@@ -1,0 +1,13 @@
+.menu_btns {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    z-index: 10;
+}
+
+.btns_container {
+    position: relative;
+}
