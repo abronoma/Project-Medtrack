@@ -22,8 +22,8 @@
   .icon {
     height: 1.7rem;
     width: 1.5rem;
-    color:black;
-    opacity: 0.5;
+    color:white;
+    opacity: 1;
     padding: 4px;
     position: absolute;
     box-sizing:border-box;
@@ -33,12 +33,14 @@
   }
   
   .input {
-    width: 125px;
+    width: 145px;
     height: 10px;
     box-sizing:border-box;
     padding-left: 1.5rem;
-    padding: 10px 40px;
+    padding: 15px 45px;
     border-radius: 20px;
     border: 0;
     right: 150px;
+    background: transparent;
+    border: 1px solid white;
   }

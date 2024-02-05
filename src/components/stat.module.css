@@ -1,8 +1,8 @@
 .pharmstat {
   height: 15rem;
-  width: 24rem;
-  border: 0.5 solid grey;
+  width: 24rem; 
   border-radius: 4px;
-  background-color: white;
+  background: transparent;
+  border: 1px solid white;
   margin-top: 5rem;
 }
