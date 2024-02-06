@@ -62,3 +62,7 @@ border: 0;
 border-radius: 4px;
 background-color: #3498db;
 }
+
+.addButton:hover {
+  color: whitesmoke;
+}
