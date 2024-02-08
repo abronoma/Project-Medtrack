@@ -17,9 +17,9 @@ const [showMenu, setShowMenu] = useState(false)
         {
             showMenu&& (
                 <div className={style.menu_btns}>
-                <button><MdOutlineRemoveRedEye/></button>
-                <button><FaRegEdit/></button>
-                <button><RiDeleteBin6Line/></button>
+                <button><MdOutlineRemoveRedEye/> View</button>
+                <button><FaRegEdit/> Edit</button>
+                <button><RiDeleteBin6Line/> Delete</button>
                 </div>
             )
         }
