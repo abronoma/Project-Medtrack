@@ -1,0 +1,46 @@
+/* .searchbutton {
+    width: 64px;
+    height: 5px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 0;
+    position: absolute;
+    right: 150px;
+} */
+
+
+
+.wrapper {
+    position:relative;
+    
+  }
+  
+  .wrappercontainer {
+    position: absolute;
+    right: 150px;
+  }
+  .icon {
+    height: 1.7rem;
+    width: 1.5rem;
+    color:white;
+    opacity: 1;
+    padding: 4px;
+    position: absolute;
+    box-sizing:border-box;
+    top:50%;
+    left:2px;
+    transform: translateY(-50%);
+  }
+  
+  .input {
+    width: 145px;
+    height: 10px;
+    box-sizing:border-box;
+    padding-left: 1.5rem;
+    padding: 15px 45px;
+    border-radius: 20px;
+    border: 0;
+    right: 150px;
+    background: transparent;
+    border: 1px solid white;
+  }
