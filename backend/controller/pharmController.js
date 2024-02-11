@@ -1,6 +1,6 @@
-import pharmacy from "../model/pharmacyModel";
+import pharmacy from "../model/pharmacyModel.js";
 
-const addDrug = async (req, res) => {
+export const addDrug = async (req, res) => {
     const { 
         drugName, description, unitOfPricing, drugCode, price
     } = req.body
@@ -16,7 +16,7 @@ const addDrug = async (req, res) => {
     }
 }
 
-const getDrugs = async (req, res) => {
+export const getDrugs = async (req, res) => {
     try {
         const drugs = await pharmacy.find()
         res.send(drugs)
@@ -25,7 +25,7 @@ const getDrugs = async (req, res) => {
     }
 }
 
-const getDrug = async (req, res) => {
+export const getDrug = async (req, res) => {
     const { id } = req.params 
 
     try {
@@ -35,3 +35,5 @@ const getDrug = async (req, res) => {
         console.log(error);
     }
 }
+
+
