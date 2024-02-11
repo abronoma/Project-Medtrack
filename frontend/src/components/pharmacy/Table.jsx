@@ -20,7 +20,7 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {pharmacyData.map((item) => (
+          {drugs.map((item) => (
             <tr key={item.id}>
               <td>{item.drugName}</td>
               <td>{item.description}</td>

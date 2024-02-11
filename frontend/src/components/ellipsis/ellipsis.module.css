@@ -1,13 +1,25 @@
 .menu_btns {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    /* gap: 2px; */
     position: absolute;
     top: 0;
-    left: 100%;
+    right: 100%;
     z-index: 10;
+    width: 6rem;
+    /* background-color: black; */
+
+}
+
+.menu_btns button {
+    background-color: #fff;
+    color: #3754A4;
+    border-radius: 0;
+    padding: 8px 6px;
+
 }
 
 .btns_container {
     position: relative;
 }
+

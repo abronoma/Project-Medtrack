@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import style from "./Form.module.css";
-import PharmacyStatistics from "../stat";
+import PharmStats from "../Piechart";
 import SearchButton from "../searchButton";
+import Table from "./Table";
 
 function PharmacyForm() {
   const [drugName, setDrugName] = useState("");
@@ -9,6 +10,15 @@ function PharmacyForm() {
   const [drugCode, setDrugCode] = useState("");
   const [unitOfPricing, setUnitOfPricing] = useState("");
   const [price, setPrice] = useState("");
+  const [drugsList, setDrugsList] = useState([]);
+
+  // defining state for the piechart
+  const [inputValue, setInputValue] = useState('');
+
+  // handling changes
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  }
 
   const inputChangeHandler = (setFunction, event) => {
     setFunction(event.target.value);
@@ -16,6 +26,17 @@ function PharmacyForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // validation before submitting
+    // if (drugName.trim() === '' || 
+    // Description.trim() === '' || 
+    // unitOfPricing.trim() === '' ||
+    // drugCode.trim() === '' ||
+    // price.trim()=== '') {
+    //   alert('Please fill in all fields');
+    //   return;
+    // }
+
     const response = {
       drugName,
       Description,
@@ -23,8 +44,14 @@ function PharmacyForm() {
       drugCode,
       price,
     };
+
+    // setDrugsList([...drugsList, newDrug])
+
     console.log(JSON.stringify(response));
     // Form submission happens here
+
+    // Display success message
+    alert('Form submitted successfully!')
 
     //SETTING THE FORM TO IT'S INITIAL STATE
     setDrugName("");
@@ -123,8 +150,10 @@ function PharmacyForm() {
           <SearchButton />
         </div>
 
-        <PharmacyStatistics />
+        <PharmStats/>
       </div>
+
+      <Table />
     </>
   );
 }
