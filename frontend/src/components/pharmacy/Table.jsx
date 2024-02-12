@@ -38,7 +38,7 @@ function Table() {
               <td>{drug.drugCode}</td>
               <td>{drug.price}</td>
               <td className={style.btns}>
-                <Ellipsis />
+                <Ellipsis drugId={drug._id}/>
               </td>
             </tr>
           ))}

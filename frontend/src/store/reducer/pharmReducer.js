@@ -17,12 +17,12 @@ export const pharmReducer = (state = initialState, action) => {
         }
 
         // case UPDATE_DRUGS: {
-        //     return {}
+        //     return {tickets: state.drugs.map((drug) )}
         // }
 
-        // case DELETE_DRUGS: {
-        //     return {}
-        // }
+        case DELETE_DRUGS: {
+            return {drugs: state.drugs.filter((drug) => drug._id !== action.payload._id)}
+        }
 
         default:
             return state
