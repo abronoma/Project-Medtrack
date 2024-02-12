@@ -2,7 +2,7 @@ import { ADD_DRUGS, FETCH_DRUGS } from "./action/pharmActions";
 
 export const addDrugs = (drug) => async (dispatch, getState) => {
     try {
-        const data = await fetch('http://localhost:7000/api/getDrugs', {
+        const data = await fetch('http://localhost:7000/api/addDrug', {
             method: 'POST',
             body: JSON.stringify(drug),
             headers: {

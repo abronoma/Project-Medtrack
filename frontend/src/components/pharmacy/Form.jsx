@@ -3,10 +3,16 @@ import style from "./Form.module.css";
 import PharmStats from "../Piechart";
 import SearchButton from "../searchButton";
 import Table from "./Table";
+import { useDispatch, useSelector } from "react-redux";
+import { addDrugs } from "../../store/thunk";
 
 function PharmacyForm() {
+  const drug = useSelector((state) => state.drugs);
+  console.log({ drug });
+
+  const dispatch = useDispatch();
   const [drugName, setDrugName] = useState("");
-  const [Description, setDescription] = useState("");
+  const [description, setDescription] = useState("");
   const [drugCode, setDrugCode] = useState("");
   const [unitOfPricing, setUnitOfPricing] = useState("");
   const [price, setPrice] = useState("");
@@ -37,28 +43,28 @@ function PharmacyForm() {
     //   return;
     // }
 
-    const response = {
+    const drug = {
       drugName,
-      Description,
+      description,
       unitOfPricing,
       drugCode,
       price,
     };
 
-    // setDrugsList([...drugsList, newDrug])
-
-    console.log(JSON.stringify(response));
-    // Form submission happens here
-
-    // Display success message
-    alert('Form submitted successfully!')
-
-    //SETTING THE FORM TO IT'S INITIAL STATE
+    dispatch(addDrugs(drug))
+    //SETTING THE FORM TO IT'S INITIAL STATE AFTER ADDING
     setDrugName("");
     setDescription("");
     setUnitOfPricing("");
     setDrugCode("");
     setPrice("");
+
+    console.log(JSON.stringify(drug));
+    // Form submission happens here
+
+    // Display success message
+    alert('Form submitted successfully!')
+    
   };
 
 
@@ -91,7 +97,7 @@ function PharmacyForm() {
               className={style.input}
               id="description"
               name="description"
-              value={Description}
+              value={description}
               onChange={(e) => inputChangeHandler(setDescription, e)}
               placeholder="Lorem ipsum with little information"
             />
