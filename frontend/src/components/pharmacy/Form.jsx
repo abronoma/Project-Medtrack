@@ -10,7 +10,7 @@ function PharmacyForm() {
   const [drugCode, setDrugCode] = useState("");
   const [unitOfPricing, setUnitOfPricing] = useState("");
   const [price, setPrice] = useState("");
-  const [drugsList, setDrugsList] = useState([]);
+
 
   // defining state for the piechart
   const [inputValue, setInputValue] = useState('');
@@ -60,6 +60,7 @@ function PharmacyForm() {
     setDrugCode("");
     setPrice("");
   };
+
 
   return (
     //THE FORM

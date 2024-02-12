@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from './Table.module.css'
-import { pharmacyData } from "../../data/dummy.js";
 import Ellipsis from "../ellipsis/ellipsis.jsx";
-
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDrugs } from '../../store/thunk.js'
 
 function Table() {
+  const drugs = useSelector(state => state.drugs)
+ 
+
+  // dispatching actions
+  const dispatch = useDispatch()
+ 
+
+  useEffect(() => {
+    dispatch(fetchDrugs());
+  }, [])
 
   return (
     <div className={style.table_container}>
@@ -20,13 +30,13 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {drugs.map((item) => (
-            <tr key={item.id}>
-              <td>{item.drugName}</td>
-              <td>{item.description}</td>
-              <td>{item.unitOfPricing}</td>
-              <td>{item.drugCode}</td>
-              <td>{item.price}</td>
+          {drugs.map((drug) => (
+            <tr key={drug._id}>
+              <td>{drug.drugName}</td>
+              <td>{drug.description}</td>
+              <td>{drug.unitOfPricing}</td>
+              <td>{drug.drugCode}</td>
+              <td>{drug.price}</td>
               <td className={style.btns}>
                 <Ellipsis />
               </td>
