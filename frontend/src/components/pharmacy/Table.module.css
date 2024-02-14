@@ -2,29 +2,27 @@
     display: flex;
     padding: 3rem 0;
     margin: 0 auto;
-    /* background-color: #fff;
-     */
 }
 
 .table_container table{
     width: 100%;
     border: 2px solid #fff;
     border-collapse: collapse;
+    /* border-spacing: 0; */
   }
 
 table thead {
     border: 2px solid #fff;
-
 }
 
 table thead tr th{
-    padding: 1rem 2rem;
+    padding: 1rem;
     color: rgb(154, 196, 223);
-    font-size: 1rem;
+    /* font-size: 1rem; */
   }
 
   table tbody tr td{
-    padding: 1rem 2rem;
+    padding: 1rem;
     text-align: center;
     border-bottom: 1px solid #fff;
   }

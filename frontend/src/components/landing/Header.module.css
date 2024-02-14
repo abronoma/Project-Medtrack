@@ -14,13 +14,21 @@
     justify-content: space-around;
 }
 
-.nav_items p {
-    border-radius: 6px;
-    padding: 10px;
+.nav_items a {
+    text-decoration: none;
+    color: #fff;
+    border-radius: 4px;
+    padding: 6px 12px;
 }
 
-.nav_items p:hover {
-    background-color: #02AD68;
+.nav_items a:hover {
+    background-color: #fff;
+    color: #3754A4;
+    font-weight: 500;
+}
+
+.nav_items a.active {
+    color: black;
 }
 
 .logo img {

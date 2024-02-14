@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import style from './Table.module.css'
 import { pharmacyData } from "../../data/dummy.js";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { FaRegEdit } from "react-icons/fa";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
+import Ellipsis from "../ellipsis/ellipsis.jsx";
 
 
-export default function Table() {
+function Table() {
+
   return (
     <div className={style.table_container}>
       <table>
@@ -29,9 +28,7 @@ export default function Table() {
               <td>{item.drugCode}</td>
               <td>{item.price}</td>
               <td className={style.btns}>
-                <button><MdOutlineRemoveRedEye/></button>
-                <button><FaRegEdit/></button>
-                <button><RiDeleteBin6Line/></button>
+                <Ellipsis />
               </td>
             </tr>
           ))}
@@ -40,3 +37,6 @@ export default function Table() {
     </div>
   );
 }
+
+
+export default Table
