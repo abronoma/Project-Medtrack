@@ -6,17 +6,27 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import style from "./ellipsis.module.css";
-import { deleteDrug } from "../../store/thunk";
+import { deleteDrug, updateDrug } from "../../store/thunk";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 
 const Ellipsis = ({drugId}) => {
   // const drug = useSelector((state) => state.drugs);
   // console.log({ drug });
 
+  // const [updateDrug, setUpdateDrug] = useState(null)
+
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
 
   const dispatch = useDispatch()
+
+  const navigate = useNavigate()
+
+  const handleUpdate = (id) => {
+    navigate(`/updatedrugs/${id}`)
+  }
 
   const handleDelete = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this drug?")
@@ -51,7 +61,7 @@ useEffect(() => {
       {showMenu && (
         <div ref={menuRef} className={style.menu_btns}>
           <button><MdOutlineRemoveRedEye /> View</button>
-          <button><FaRegEdit /> Edit</button>
+          <button onClick={() => handleUpdate(drugId)}><FaRegEdit /> Edit</button>
           <button onClick={handleDelete}><RiDeleteBin6Line /> Delete</button>
         </div>
       )}

@@ -16,9 +16,9 @@ export const pharmReducer = (state = initialState, action) => {
             return {... state, drugs: action.payload}
         }
 
-        // case UPDATE_DRUGS: {
-        //     return {tickets: state.drugs.map((drug) )}
-        // }
+        case UPDATE_DRUGS: {
+            return {tickets: state.drugs.map((drug) )}
+        }
 
         case DELETE_DRUGS: {
             return {drugs: state.drugs.filter((drug) => drug._id !== action.payload._id)}

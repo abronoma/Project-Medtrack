@@ -1,49 +1,39 @@
-import React, { useState } from "react";
-import style from "./Form.module.css";
-import PharmStats from "../Piechart";
-import SearchButton from "../searchButton";
-import Table from "./Table";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addDrugs } from "../../store/thunk";
-import { toast } from "react-toastify";
+import { useState } from "react";
+import style from "../../src/components/pharmacy/Form.module.css";
+import { useParams } from "react-router";
 
+function UpdateDrugs() {
+  const updatedDrug = useSelector((state) => state.drugs);
+  console.log({ updatedDrug });
 
-function PharmacyForm() {
-  const drug = useSelector((state) => state.drugs);
-  console.log({ drug });
+  const {id} = useParams()
+  console.log("id", id);
+
+  const findDrug = updatedDrug.find((item) => {
+    return item._id === id
+})
+console.log("findDrug", findDrug);
+
 
   const dispatch = useDispatch();
-  const [drugName, setDrugName] = useState("");
-  const [description, setDescription] = useState("");
-  const [drugCode, setDrugCode] = useState("");
-  const [unitOfPricing, setUnitOfPricing] = useState("");
-  const [price, setPrice] = useState("");
-
-
-  // defining state for the piechart
-  const [inputValue, setInputValue] = useState('');
-
-  // handling changes
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  }
-
-  const inputChangeHandler = (setFunction, event) => {
-    setFunction(event.target.value);
-  };
+  const [drugName, setDrugName] = useState(findDrug.drugName);
+  const [description, setDescription] = useState(findDrug.description);
+  const [drugCode, setDrugCode] = useState(findDrug.drugCode);
+  const [unitOfPricing, setUnitOfPricing] = useState(findDrug.unitOfPricing);
+  const [price, setPrice] = useState(findDrug.price);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // validation before submitting
-    // if (drugName.trim() === '' || 
-    // Description.trim() === '' || 
-    // unitOfPricing.trim() === '' ||
-    // drugCode.trim() === '' ||
-    // price.trim()=== '') {
-    //   alert('Please fill in all fields');
-    //   return;
-    // }
+    dispatch(addDrugs(drug));
+    //SETTING THE FORM TO IT'S INITIAL STATE AFTER ADDING
+    setDrugName(drugName);
+    setDescription(description);
+    setUnitOfPricing(unitOfPricing);
+    setDrugCode(drugCode);
+    setPrice(price);
 
     const drug = {
       drugName,
@@ -52,41 +42,11 @@ function PharmacyForm() {
       drugCode,
       price,
     };
-
-    if (!drugName) {
-      return toast.error('Drug name is required!')
-    } else if ( !description) {
-      return toast.error('Description is required!')
-    } else if ( !unitOfPricing) {
-      return toast.error('Unit of Pricing is required!')
-    } else if ( !drugCode) {
-      return toast.error('Drug code is required!')
-    } else if ( !price) {
-      return toast.error('Price is required!')
-    } else {
-  
-    dispatch(addDrugs(drug))
-    //SETTING THE FORM TO IT'S INITIAL STATE AFTER ADDING
-    setDrugName("");
-    setDescription("");
-    setUnitOfPricing("");
-    setDrugCode("");
-    setPrice("");
-
-    console.log(JSON.stringify(drug));
-    // Form submission happens here
-
-    // Display success message
-    toast.success("Drug added successfully!")
-  }
-    
   };
 
-
   return (
-    //THE FORM
     <>
-      <div className={style.dflex}>
+      <div>
         <form onSubmit={handleSubmit}>
           <div className={style.marginBottom}>
             <label htmlFor="drugName" className={style.label}>
@@ -161,23 +121,15 @@ function PharmacyForm() {
               onChange={(e) => inputChangeHandler(setPrice, e)}
               placeholder="2.02"
             />
-
-            <button className={style.addButton} type="Submit">
-              ADD
-            </button>
           </div>
+
+          <button className={style.addButton} type="Submit">
+            ADD
+          </button>
         </form>
-
-        <div>
-          <SearchButton />
-        </div>
-
-        <PharmStats/>
       </div>
-
-      <Table />
     </>
   );
 }
 
-export default PharmacyForm;
+export default UpdateDrugs;

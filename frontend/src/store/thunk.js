@@ -1,4 +1,4 @@
-import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUGS } from "./action/pharmActions";
+import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUGS, UPDATE_DRUGS } from "./action/pharmActions";
 
 export const addDrugs = (drug) => async (dispatch, getState) => {
     try {
@@ -33,6 +33,21 @@ export const fetchDrugs = () => async (dispatch, getState) => {
 }
 
 
+export const updateDrug = (id) => async(dispatch, getState) => {
+    try {
+        const data = await fetch(`http://localhost:7000/api/updateDrug/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        const updatedDrug = await data.json()
+        dispatch({type: UPDATE_DRUGS, payload: updatedDrug})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const deleteDrug = (id) => async(dispatch, getState) => {
     try {
         const data = await fetch(`http://localhost:7000/api/deleteDrug/${id}`, {
@@ -44,6 +59,6 @@ export const deleteDrug = (id) => async(dispatch, getState) => {
         const deletedDrug = await data.json()
         dispatch({type: DELETE_DRUGS, payload: deletedDrug})
     } catch (error) {
-        
+        console.log(error)
     }
 }

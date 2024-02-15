@@ -5,6 +5,7 @@ import Pharmacy from "./components/pharmacy/pharmacy";
 import Lab from "./components/laboratory/laboratory";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import UpdateDrugs from "./pages/updateDrugs";
 // import logo from '../public/'
 // import { ReactDOM } from "react";
 
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/pharmacy",
-        element: <Pharmacy />,
+        element: <Pharmacy />,          
+      },
+      {
+        path: "/updatedrugs/:id",
+        element: <UpdateDrugs />
       },
       {
         path: "/laboratory",
