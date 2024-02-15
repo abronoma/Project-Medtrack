@@ -17,9 +17,9 @@ const pharmacySchema = new Schema({
     },
 
     drugCode : {
-        type: String,
+        type: Number,
         required: true,
-        set: (value) => value.toUpperCase(),
+        // set: (value) => value.toUpperCase(),
     },
 
     price : {
@@ -28,9 +28,9 @@ const pharmacySchema = new Schema({
     },
 },
 {    
-    timestamps: true
+    timestamps: true,
 })
 
 const pharmacy = mongoose.model('pharmacy', pharmacySchema)
-
+// console.log(pharmacy.findById('65c772e62b6f55bd5fe27b5b'));
 export default pharmacy

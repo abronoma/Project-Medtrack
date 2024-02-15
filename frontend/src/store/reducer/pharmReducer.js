@@ -1,8 +1,30 @@
-import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUGS, UPDATE_DRUGS } from "../action"
+import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUGS, UPDATE_DRUGS } from "../action/pharmActions.js"
 
 const initialState = {
-    drugs: []
+    drugs: [],
+    // loading: false,
+    // error: null
 }
 
 export const pharmReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case ADD_DRUGS: {
+            return {drugs: [...state.drugs, action.payload]}
+        }
+
+        case FETCH_DRUGS: {
+            return {... state, drugs: action.payload}
+        }
+
+        case UPDATE_DRUGS: {
+            return {tickets: state.drugs.map((drug) )}
+        }
+
+        case DELETE_DRUGS: {
+            return {drugs: state.drugs.filter((drug) => drug._id !== action.payload._id)}
+        }
+
+        default:
+            return state
+    }
 }
