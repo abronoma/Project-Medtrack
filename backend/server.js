@@ -11,7 +11,7 @@ const PORT = process.env.PORT
 const mongoURL = process.env.MONGO_URI
 
 //middleware
-// app.use(cors({ origin: ''}))
+app.use(cors())
 app.use(express.json())
 app.use(morgan('dev'))
 app.use('/api', router)

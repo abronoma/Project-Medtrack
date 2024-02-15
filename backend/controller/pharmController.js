@@ -36,4 +36,30 @@ export const getDrug = async (req, res) => {
     }
 }
 
+export const updateDrug = async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const updatedDrug = await pharmacy.findByIdAndUpdate({_id: id}, req.body,{ returnOriginal: false} )
+        if (!updatedDrug) {
+            return res.status(404).json({ error: 'Drug not found' })
+        }
+        res.json(updatedDrug)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+export const deleteDrug = async (req, res) => {
+    const { id } = req.params
+    try {
+        const deletedDrug = await pharmacy.findByIdAndDelete(id)
+        if (deletedDrug) res.send(deletedDrug)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 
