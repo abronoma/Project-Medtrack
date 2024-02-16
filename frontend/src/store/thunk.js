@@ -1,3 +1,4 @@
+import { FETCH_LABS } from "./action/labActions";
 import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUGS, UPDATE_DRUGS } from "./action/pharmActions";
 
 export const addDrugs = (drug) => async (dispatch, getState) => {
@@ -60,5 +61,21 @@ export const deleteDrug = (id) => async(dispatch, getState) => {
         dispatch({type: DELETE_DRUGS, payload: deletedDrug})
     } catch (error) {
         console.log(error)
+    }
+}
+
+// lab thunk
+export const fetchLabs = () => async (dispatch, getState) => {
+    try {
+        const response = await fetch('http://localhost:7000/api/getLabs', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const data = await response.json()
+        dispatch({ type: FETCH_LABS, payload: data })
+    } catch (error) {
+        console.log('Could not fetch labs:', error)
     }
 }

@@ -1,12 +1,10 @@
 import React from "react";
 import LabForm from './labForm'
-import Table from "./Table";
 
-export default function laboratory() {
+export default function Laboratory() {
   return (
     <div>
       <LabForm />
-      <Table />
     </div>
   );
 }

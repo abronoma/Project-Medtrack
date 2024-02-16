@@ -1,30 +1,50 @@
 import React, { useState } from "react";
 import style from "../pharmacy/Form.module.css";
-import LabStatistics from "../stat";
+import { useDispatch, useSelector } from "react-redux";
 import SearchButton from "../searchButton";
+import { toast } from "react-toastify";
+import LabTable from "./LabTable";
+
 
 function LabForm() {
+  const lab = useSelector((state) => state.drugs);
+  console.log({ lab });
+
+  const dispatch = useDispatch();
   const [labItemName, setlabItemName] = useState("");
   const [mainCategory, setmainCategory] = useState("");
   const [subCategory, setsubCategory] = useState("");
   const [labItemCode, setlabItemCode] = useState("");
-  const [Price, setPrice] = useState("");
+  const [price, setPrice] = useState("");
 
+
+  // handling changes
   const inputChangeHandler = (setFunction, event) => {
     setFunction(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const response = {
+
+    const lab = {
       labItemName,
       mainCategory,
       subCategory,
       labItemCode,
-      Price,
+      price,
     };
-    console.log(JSON.stringify(response));
-    // Form submission happens here
+
+    if (!labItemName) {
+      return toast.error('Drug name is required!')
+    } else if ( !mainCategory) {
+      return toast.error('Main Category is required!')
+    } else if ( !subCategory) {
+      return toast.error('Sub Category  is required!')
+    } else if ( !labItemCode) {
+      return toast.error('Lab Item code is required!')
+    } else if ( !price) {
+      return toast.error('Price is required!')
+    } else {
 
     //SETTING THE FORM TO IT'S INITIAL STATE
     setlabItemName("");
@@ -32,7 +52,13 @@ function LabForm() {
     setsubCategory("");
     setlabItemCode("");
     setPrice("");
-  };
+
+    console.log(JSON.stringify(lab));
+
+     // Display success message
+     toast.success("Drug added successfully!")
+  }
+}
 
   return (
     //THE FORM
@@ -125,9 +151,9 @@ function LabForm() {
             <input
               type="text"
               className={style.input}
-              id="Price"
+              id="price"
               name="price"
-              value={Price}
+              value={price}
               onChange={(e) => inputChangeHandler(setPrice, e)}
               placeholder="2.02"
             />
@@ -142,8 +168,10 @@ function LabForm() {
           <SearchButton />
         </div>
 
-        <LabStatistics />
+        {/* <LabStatistics /> */}
       </div>
+
+      <LabTable />
     </>
   );
 }

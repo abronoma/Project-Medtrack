@@ -1,0 +1,37 @@
+[
+    {
+        "labItemName": "labItemName",
+        "mainCategory": "X-ray",
+        "subCategory": "Head and skull",
+        "labItemCode": 222333,
+        "price": 10
+    },
+    {
+        "labItemName": "labItem 2",
+        "mainCategory": "X-ray",
+        "subCategory": "Head and skull",
+        "labItemCode": 222333,
+        "price": 10
+    },
+    {
+        "labItemName": "labItem 3",
+        "mainCategory": "X-ray",
+        "subCategory": "Head and skull",
+        "labItemCode": 222333,
+        "price": 10
+    },
+    {
+        "labItemName": "labItem 4",
+        "mainCategory": "X-ray",
+        "subCategory": "Head and skull",
+        "labItemCode": 222333,
+        "price": 10.00
+    },
+    {
+        "labItemName": "labItem 5",
+        "mainCategory": "X-ray",
+        "subCategory": "Head and skull",
+        "labItemCode": 222333,
+        "price": 10
+    }
+]
