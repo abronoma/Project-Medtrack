@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import SearchButton from "../searchButton";
 import { toast } from "react-toastify";
 import LabTable from "./LabTable";
+import { addLabs } from "../../store/thunk";
+import PharmStats from "../Piechart";
 
 
 function LabForm() {
-  const lab = useSelector((state) => state.drugs);
-  console.log({ lab });
+  // const lab = useSelector((state) => state.labs);
+  // console.log({ lab });
 
   const dispatch = useDispatch();
   const [labItemName, setlabItemName] = useState("");
@@ -46,6 +48,8 @@ function LabForm() {
       return toast.error('Price is required!')
     } else {
 
+    
+    dispatch(addLabs(lab))
     //SETTING THE FORM TO IT'S INITIAL STATE
     setlabItemName("");
     setmainCategory("");
@@ -94,15 +98,6 @@ function LabForm() {
             <label htmlFor="mainCategory" className={style.label}>
               Main Category
             </label>
-            {/* <input
-              type="text"
-              className={style.input}
-              id="mainCategory"
-              name="mainCategory"
-              value={mainCategory}
-              onChange={(e) => inputChangeHandler(setmainCategory, e)}
-              placeholder="X-ray"
-            /> */}
             <select className={style.input}>
               <option value="" disabled selected>
                 X-ray
@@ -168,7 +163,7 @@ function LabForm() {
           <SearchButton />
         </div>
 
-        {/* <LabStatistics /> */}
+        <PharmStats />
       </div>
 
       <LabTable />

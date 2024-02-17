@@ -5,13 +5,14 @@ const initialState = {
 }
 
 export const labReducer = (state = initialState, action) => {
+    console.log("action", action);
     switch(action.type) {
         case ADD_LABS: {
             return {labs: [...state.labs, action.payload]}
         }
 
         case FETCH_LABS: {
-            return {...state, labs: action.payload}
+            return {labs: action.payload}
         }
 
         

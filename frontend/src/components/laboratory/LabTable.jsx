@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import style from '../pharmacy/Table.module.css'
-import Ellipsis from "../ellipsis/ellipsis.jsx";
+import Ellipsis from "../laboratory/labEllipsis.jsx";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLabs } from "../../store/thunk.js";
 
 
 function LabTable() {
-  const labs = useSelector(state => state.labs)
+  const {labs} = useSelector(state => state.labs)
+  console.log("labs", labs);
 
   // dispatching actions
   const dispatch = useDispatch()
@@ -30,14 +31,14 @@ function LabTable() {
           </tr>
         </thead>
         <tbody>
-          {labs && labs.map((lab) => (
+          {labs.map((lab) => (
             <tr key={lab._id}>
-              <td>{lab.labItem}</td>
+              <td>{lab.labItemName}</td>
               <td>{lab.labType}</td>
-              <td>{lab.category}</td>
+              <td>{lab.mainCategory}</td>
               <td>{lab.subCategory}</td>
-              <td>{lab.Code}</td>
-              <td>{lab.Price}</td>
+              <td>{lab.labItemCode}</td>
+              <td>{lab.price}</td>
               <td className={style.btns}>
                 <Ellipsis labId={lab._id}/>
               </td>
