@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import style from './Piechart.module.css'
 
 const data = [
   { name: 'Group A', value: 400 },
@@ -27,7 +26,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 const PharmStats = ({ inputValue, handleInputChange }) => {
 
     return (
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" minWidth={300} height="100%" minHeight={300}>
         <PieChart width={400} height={400}>
           <Pie
             data={data}

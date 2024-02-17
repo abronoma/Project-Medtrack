@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import style from './Table.module.css'
 import Ellipsis from "../ellipsis/ellipsis.jsx";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDrugs } from '../../store/thunk.js'
 
 function Table() {
-  const drugs = useSelector(state => state.drugs)
+  const {drugs} = useSelector(state => state.drugs)
  
 
   // dispatching actions

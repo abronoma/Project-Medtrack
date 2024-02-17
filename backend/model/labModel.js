@@ -17,9 +17,9 @@ const labSchema = new Schema({
     },
 
     labItemCode : {
-        type: String,
+        type: Number,
         required: true,
-        set: (value) => value.toUpperCase(),
+        // set: (value) => value.toUpperCase(),
     },
 
     price : {
@@ -32,5 +32,5 @@ const labSchema = new Schema({
 })
 
 const lab = mongoose.model('lab', labSchema)
-
-export default pharmacy
+console.log(lab.findById(''));
+export default lab

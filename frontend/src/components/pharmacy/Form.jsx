@@ -35,16 +35,6 @@ function PharmacyForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // validation before submitting
-    // if (drugName.trim() === '' || 
-    // Description.trim() === '' || 
-    // unitOfPricing.trim() === '' ||
-    // drugCode.trim() === '' ||
-    // price.trim()=== '') {
-    //   alert('Please fill in all fields');
-    //   return;
-    // }
-
     const drug = {
       drugName,
       description,

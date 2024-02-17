@@ -6,8 +6,6 @@ import Lab from "./components/laboratory/laboratory";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import UpdateDrugs from "./pages/updateDrugs";
-// import logo from '../public/'
-// import { ReactDOM } from "react";
 
 const router = createBrowserRouter([
   {
