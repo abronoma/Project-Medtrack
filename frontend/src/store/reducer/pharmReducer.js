@@ -2,8 +2,6 @@ import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUGS, UPDATE_DRUGS } from "../action/ph
 
 const initialState = {
     drugs: [],
-    // loading: false,
-    // error: null
 }
 
 export const pharmReducer = (state = initialState, action) => {
@@ -17,7 +15,7 @@ export const pharmReducer = (state = initialState, action) => {
         }
 
         case UPDATE_DRUGS: {
-            return {tickets: state.drugs.map((drug) )}
+            return {drugs: state.drugs.map((drug))}
         }
 
         case DELETE_DRUGS: {

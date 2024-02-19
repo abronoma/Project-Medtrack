@@ -12,10 +12,8 @@ import { useNavigate } from "react-router";
 
 
 const Ellipsis = ({drugId}) => {
-  // const drug = useSelector((state) => state.drugs);
-  // console.log({ drug });
-
-  // const [updateDrug, setUpdateDrug] = useState(null)
+  const {drug} = useSelector((state) => state.drugs);
+  console.log({ drug });
 
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);

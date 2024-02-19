@@ -6,6 +6,7 @@ import Lab from "./components/laboratory/laboratory";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import UpdateDrugs from "./pages/updateDrugs";
+import UpdateLabs from "./pages/updateLabs";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         path: "/laboratory",
         element: <Lab />,
       },
+      {
+        path: "/updatelabs/:id",
+        element: <UpdateLabs />
+      }
     ],
   },
 ]);

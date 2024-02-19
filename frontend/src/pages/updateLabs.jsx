@@ -1,69 +1,49 @@
-import React, { useState } from "react";
-import style from "../pharmacy/Form.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import SearchButton from "../searchButton";
-import { toast } from "react-toastify";
-import LabTable from "./LabTable";
-import { addLabs } from "../../store/thunk";
-import PharmStats from "../Piechart";
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom';
+import { addLabs } from '../store/thunk';
+import style from '../components/pharmacy/Form.module.css'
+
+function UpdateLabs() {
+    const {updatedLab} = useSelector((state) => state.labs)
+    console.log(updatedLab);
+
+    const {id} = useParams()
+    console.log('id', id);
+
+    const findLab = updatedLab.find((item) => {
+        return item._id === id
+    })
+    console.log('findLab', findLab);
 
 
-function LabForm() {
+    const dispatch = useDispatch();
+    const [labItemName, setlabItemName] = useState(findLab.labItemName);
+    const [mainCategory, setmainCategory] = useState(findLab.mainCategory);
+    const [subCategory, setsubCategory] = useState(findLab.subCategory);
+    const [labItemCode, setlabItemCode] = useState(findLab.labItemCode);
+    const [price, setPrice] = useState(findLab.price);
 
-  const dispatch = useDispatch();
-  const [labItemName, setlabItemName] = useState("");
-  const [mainCategory, setmainCategory] = useState("");
-  const [subCategory, setsubCategory] = useState("");
-  const [labItemCode, setlabItemCode] = useState("");
-  const [price, setPrice] = useState("");
+    const handleSubmit = (event) => {
+        event.preventDefault();
 
+        dispatch(addLabs(lab));
+        setlabItemName(labItemName)
+        setmainCategory(mainCategory)
+        setsubCategory(subCategory)
+        setlabItemCode(labItemCode)
+        setPrice(price)
 
-  // handling changes
-  const inputChangeHandler = (setFunction, event) => {
-    setFunction(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const lab = {
-      labItemName,
-      mainCategory,
-      subCategory,
-      labItemCode,
-      price,
-    };
-
-    if (!labItemName) {
-      return toast.error('Drug name is required!')
-    } else if ( !mainCategory) {
-      return toast.error('Main Category is required!')
-    } else if ( !subCategory) {
-      return toast.error('Sub Category  is required!')
-    } else if ( !labItemCode) {
-      return toast.error('Lab Item code is required!')
-    } else if ( !price) {
-      return toast.error('Price is required!')
-    } else {
-
-    
-    dispatch(addLabs(lab))
-    //SETTING THE FORM TO IT'S INITIAL STATE
-    setlabItemName("");
-    setmainCategory("");
-    setsubCategory("");
-    setlabItemCode("");
-    setPrice("");
-
-    console.log(JSON.stringify(lab));
-
-     // Display success message
-     toast.success("Drug added successfully!")
-  }
-}
+        const lab ={
+            labItemName,
+            mainCategory,
+            subCategory,
+            labItemCode,
+            price
+        }
+    }
 
   return (
-    //THE FORM
     <>
       <div className={style.dflex}>
         <form onSubmit={handleSubmit}>
@@ -157,16 +137,10 @@ function LabForm() {
           </div>
         </form>
 
-        <div>
-          <SearchButton />
-        </div>
-
-        <PharmStats />
       </div>
 
-      <LabTable />
     </>
-  );
+  )
 }
 
-export default LabForm;
+export default UpdateLabs

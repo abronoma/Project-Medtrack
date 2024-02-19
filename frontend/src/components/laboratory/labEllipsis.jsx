@@ -10,10 +10,8 @@ import { useNavigate } from "react-router";
 
 
 const LabEllipsis = ({labId}) => {
-  // const drug = useSelector((state) => state.drugs);
-  // console.log({ drug });
-
-  // const [updateDrug, setUpdateDrug] = useState(null)
+  const {lab} = useSelector((state) => state.drugs);
+  console.log({ lab });
 
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
@@ -22,9 +20,9 @@ const LabEllipsis = ({labId}) => {
 
   const navigate = useNavigate()
 
-//   const handleUpdate = (id) => {
-//     navigate(`/updatedrugs/${id}`)
-//   }
+  const handleUpdate = (id) => {
+    navigate(`/updatelabs/${id}`)
+  }
 
 //   const handleDelete = () => {
 //     const confirmDelete = window.confirm("Are you sure you want to delete this drug?")
