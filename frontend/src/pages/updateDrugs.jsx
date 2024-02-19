@@ -5,8 +5,8 @@ import style from "../../src/components/pharmacy/Form.module.css";
 import { useParams } from "react-router";
 
 function UpdateDrugs() {
-  const updatedDrug = useSelector((state) => state.drugs);
-  console.log({ updatedDrug });
+  const {updatedDrug} = useSelector((state) => state.drugs);
+  console.log({updatedDrug});
 
   const {id} = useParams()
   console.log("id", id);
@@ -40,7 +40,7 @@ console.log("findDrug", findDrug);
       description,
       unitOfPricing,
       drugCode,
-      price,
+      price
     };
   };
 

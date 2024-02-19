@@ -1,4 +1,4 @@
-import { ADD_LABS, FETCH_LABS } from "./action/labActions";
+import { ADD_LABS, DELETE_LABS, FETCH_LABS, UPDATE_LABS } from "./action/labActions";
 import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUGS, UPDATE_DRUGS } from "./action/pharmActions";
 
 
@@ -96,5 +96,35 @@ export const addLabs = (lab) => async (dispatch, getState) => {
         dispatch({type: ADD_LABS, payload: newLab})
     } catch (error) {
         console.log('Could not add lab:', error)
+    }
+}
+
+export const updateLab = (id) => async(dispatch, getState) => {
+    try {
+        const data = await fetch(`http://localhost:7000/api/updateLab/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        const updatedLab = await data.json()
+        dispatch({type: UPDATE_LABS, payload: updatedLab})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const deleteLab = (id) => async(dispatch, getState) => {
+    try {
+        const data = await fetch(`http://localhost:7000/api/deleteLab/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        const deletedLab = await data.json()
+        dispatch({type: DELETE_LABS, payload: deletedLab})
+    } catch (error) {
+        console.log(error)
     }
 }
