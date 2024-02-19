@@ -49,7 +49,12 @@ useEffect(() => {
 }, []);
 
  const toggleMenu = () => {
+  console.log("toggle", toggleMenu);
   setShowMenu((prev) => !prev) }
+  // close the menu if it's open
+  // if (showMenu) {
+  //   setShowMenu(false);
+  // }
 
   return (
     <div className={style.btns_container}>
