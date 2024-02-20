@@ -7,11 +7,11 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import style from "./../ellipsis/ellipsis.module.css";
 import { useNavigate } from "react-router";
+import { deleteLab } from "../../store/thunk";
 
 
 const LabEllipsis = ({labId}) => {
   const {lab} = useSelector((state) => state.drugs);
-  console.log({ lab });
 
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
@@ -24,12 +24,12 @@ const LabEllipsis = ({labId}) => {
     navigate(`/updatelabs/${id}`)
   }
 
-//   const handleDelete = () => {
-//     const confirmDelete = window.confirm("Are you sure you want to delete this drug?")
-//     if (confirmDelete) {
-//       dispatch(deleteDrug(drugId))
-//     }
-//   }
+  const handleDelete = () => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this lab entry?")
+    if (confirmDelete) {
+      dispatch(deleteLab(labId))
+    }
+  }
 
 
 useEffect(() => {
@@ -58,7 +58,7 @@ useEffect(() => {
         <div ref={menuRef} className={style.menu_btns}>
           <button><MdOutlineRemoveRedEye /> View</button>
           <button onClick={() => handleUpdate(labId)}><FaRegEdit /> Edit</button>
-          <button><RiDeleteBin6Line /> Delete</button>
+          <button onClick={handleDelete}><RiDeleteBin6Line /> Delete</button>
         </div>
       )}
     </div>
