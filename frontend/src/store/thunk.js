@@ -1,5 +1,5 @@
 import { ADD_LABS, DELETE_LABS, FETCH_LABS, UPDATE_LABS } from "./action/labActions";
-import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUGS, UPDATE_DRUGS } from "./action/pharmActions";
+import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUG, FETCH_DRUGS, UPDATE_DRUGS } from "./action/pharmActions";
 
 
 // pharamcy thunk
@@ -35,6 +35,21 @@ export const fetchDrugs = () => async (dispatch, getState) => {
     }
 }
 
+export const fetchDrug = () => async (dispatch, getState) => {
+    try {
+          const data = await fetch(`http://localhost:7000/api//getDrug/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        const response = await data.json()
+        dispatch({ type: FETCH_DRUG, payload: response})
+    } catch (error) {
+        console.log("Could not fetch drug:", error);
+    }
+
+}
 
 export const updateDrug = (id) => async(dispatch, getState) => {
     try {

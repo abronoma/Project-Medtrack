@@ -7,6 +7,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import UpdateDrugs from "./pages/updateDrugs";
 import UpdateLabs from "./pages/updateLabs";
+import ViewDrug from "./components/pharmacy/ViewDrug";
+import ViewLab from "./components/laboratory/ViewLab";
 
 const router = createBrowserRouter([
   {
@@ -26,13 +28,21 @@ const router = createBrowserRouter([
         element: <UpdateDrugs />
       },
       {
+        path: "/fetchdrug/:id",
+        element: <ViewDrug />
+      },
+      {
         path: "/laboratory",
         element: <Lab />,
       },
       {
         path: "/updatelabs/:id",
         element: <UpdateLabs />
-      }
+      },
+      {
+        path: "/fetchlab/:id",
+        element: <ViewLab />
+      },
     ],
   },
 ]);
