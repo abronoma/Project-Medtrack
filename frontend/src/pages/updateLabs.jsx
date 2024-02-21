@@ -1,17 +1,26 @@
 import React, { useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import style from '../components/pharmacy/Form.module.css'
 import { fetchLabs, updateLab } from '../store/thunk';
 
 function UpdateLabs() {
     const updatedLab = useSelector((state) => state.labs.labs)
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const {id} = useParams()
+
+    const [lab, setLab] = useState({
+      labItemName: "",
+      mainCategory: "",
+      labItemCode: "",
+      subCategory: "",
+      price: "",
+    })
 
     useEffect(() => {
       dispatch(fetchLabs());
-    }, [])
+    }, [dispatch])
 
     const findLab = updatedLab.find((item) => {
         return item._id === id
@@ -75,7 +84,11 @@ function UpdateLabs() {
             <label htmlFor="mainCategory" className={style.label}>
               Main Category
             </label>
-            <select className={style.input}>
+            <select className={style.input}
+               id="mainCategory"
+               name="mainCategory"
+               value={mainCategory}
+               onChange={(e) => inputChangeHandler(setMainCategory, e)}>
               <option value="" disabled selected>
                 X-ray
               </option>

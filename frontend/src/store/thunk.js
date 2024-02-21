@@ -37,7 +37,7 @@ export const fetchDrugs = () => async (dispatch, getState) => {
 
 export const fetchDrug = () => async (dispatch, getState) => {
     try {
-          const data = await fetch(`http://localhost:7000/api//getDrug/${id}`, {
+          const data = await fetch(`http://localhost:7000/api/getDrug/${id}`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json'

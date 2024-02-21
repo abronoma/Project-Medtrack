@@ -7,6 +7,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import style from "./ellipsis.module.css";
 import { deleteDrug } from "../../store/thunk";
+import { toast } from "react-toastify"
 import { useNavigate } from "react-router";
 
 
@@ -29,6 +30,7 @@ const Ellipsis = ({drugId}) => {
     if (confirmDelete) {
       dispatch(deleteDrug(drugId))
     }
+    toast.success("Deleted successfully!")
   }
 
 
@@ -50,9 +52,9 @@ useEffect(() => {
   console.log("toggle", toggleMenu);
   setShowMenu((prev) => !prev) }
   // close the menu if it's open
-  // if (showMenu) {
-  //   setShowMenu(false);
-  // }
+  if (showMenu) {
+    setShowMenu(false);
+  }
 
   return (
     <div className={style.btns_container}>

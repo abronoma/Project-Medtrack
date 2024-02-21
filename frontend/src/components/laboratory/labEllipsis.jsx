@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -8,6 +7,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import style from "./../ellipsis/ellipsis.module.css";
 import { useNavigate } from "react-router";
 import { deleteLab } from "../../store/thunk";
+import { toast } from "react-toastify"
 
 
 const LabEllipsis = ({labId}) => {
@@ -29,6 +29,7 @@ const LabEllipsis = ({labId}) => {
     if (confirmDelete) {
       dispatch(deleteLab(labId))
     }
+    toast.success("Deleted successfully!")
   }
 
 
