@@ -1,23 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom';
-import { addLabs } from '../store/thunk';
+import { useParams, useNavigate } from 'react-router-dom';
 import style from '../components/pharmacy/Form.module.css'
+import { fetchLabs, updateLab } from '../store/thunk';
 
 function UpdateLabs() {
-    const {updatedLab} = useSelector((state) => state.labs)
-    console.log(updatedLab);
-
+    const updatedLab = useSelector((state) => state.labs.labs)
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
     const {id} = useParams()
-    console.log('id', id);
+
+    const [lab, setLab] = useState({
+      labItemName: "",
+      mainCategory: "",
+      labItemCode: "",
+      subCategory: "",
+      price: "",
+    })
+
+    useEffect(() => {
+      dispatch(fetchLabs());
+    }, [dispatch])
 
     const findLab = updatedLab.find((item) => {
         return item._id === id
     })
-    console.log('findLab', findLab);
 
 
-    const dispatch = useDispatch();
     const [labItemName, setlabItemName] = useState(findLab.labItemName);
     const [mainCategory, setmainCategory] = useState(findLab.mainCategory);
     const [subCategory, setsubCategory] = useState(findLab.subCategory);
@@ -27,20 +36,19 @@ function UpdateLabs() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        dispatch(addLabs(lab));
-        setlabItemName(labItemName)
-        setmainCategory(mainCategory)
-        setsubCategory(subCategory)
-        setlabItemCode(labItemCode)
-        setPrice(price)
-
         const lab ={
             labItemName,
             mainCategory,
             subCategory,
             labItemCode,
             price
-        }
+        };
+
+        dispatch(updateLab(updatedLab))
+    };
+
+    const inputChangeHandler = (setter, e) => {
+      setter(e.target.value)
     }
 
   return (
@@ -76,7 +84,11 @@ function UpdateLabs() {
             <label htmlFor="mainCategory" className={style.label}>
               Main Category
             </label>
-            <select className={style.input}>
+            <select className={style.input}
+               id="mainCategory"
+               name="mainCategory"
+               value={mainCategory}
+               onChange={(e) => inputChangeHandler(setMainCategory, e)}>
               <option value="" disabled selected>
                 X-ray
               </option>
@@ -132,7 +144,7 @@ function UpdateLabs() {
             />
 
             <button className={style.addButton} type="Submit">
-              ADD
+              UPDATE
             </button>
           </div>
         </form>

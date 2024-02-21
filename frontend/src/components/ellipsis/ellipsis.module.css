@@ -1,19 +1,16 @@
 .menu_btns {
     display: flex;
     flex-direction: column;
-    /* gap: 2px; */
     position: absolute;
     top: 0;
     right: 100%;
     z-index: 10;
     width: 6rem;
-    /* background-color: black; */
-
 }
 
 .menu_btns button {
-    background-color: #fff;
-    color: #3754A4;
+    /* background-color: #fff; */
+    color: #326A55;
     border-radius: 0;
     padding: 8px 6px;
 

@@ -1,23 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import style from "../../src/components/pharmacy/Form.module.css";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router-dom";
+import { fetchDrugs, updateDrug } from "../store/thunk";
+
 
 function UpdateDrugs() {
-  const {updatedDrug} = useSelector((state) => state.drugs);
-  console.log({updatedDrug});
-
+  const updatedDrug = useSelector((state) => state.drugs.drugs);
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
   const {id} = useParams()
-  console.log("id", id);
+  
+
+  const [drug, setDrug] = useState({
+    drugName: "",
+    description: "",
+    drugCode: "",
+    unitOfPricing: "",
+    price: "",
+  })
+
+  useEffect(() => {
+    dispatch(fetchDrugs());
+  }, [dispatch])
 
   const findDrug = updatedDrug.find((item) => {
     return item._id === id
 })
-console.log("findDrug", findDrug);
 
-
-  const dispatch = useDispatch();
   const [drugName, setDrugName] = useState(findDrug.drugName);
   const [description, setDescription] = useState(findDrug.description);
   const [drugCode, setDrugCode] = useState(findDrug.drugCode);
@@ -27,22 +37,32 @@ console.log("findDrug", findDrug);
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(addDrugs(drug));
+    // dispatch(addDrugs(drug));
     //SETTING THE FORM TO IT'S INITIAL STATE AFTER ADDING
-    setDrugName(drugName);
-    setDescription(description);
-    setUnitOfPricing(unitOfPricing);
-    setDrugCode(drugCode);
-    setPrice(price);
+    // setDrugName(drugName);
+    // setDescription(description);
+    // setUnitOfPricing(unitOfPricing);
+    // setDrugCode(drugCode);
+    // setPrice(price);
 
-    const drug = {
+    const updatedDrug = {
       drugName,
       description,
       unitOfPricing,
       drugCode,
       price
     };
+
+    dispatch(updateDrug(updatedDrug));
+    dispatch(fetchDrugs());
+    navigate('/pharmacy')
+
+
   };
+
+  const inputChangeHandler = (setter, e) => {
+    setter(e.target.value)
+  }
 
   return (
     <>
@@ -123,8 +143,8 @@ console.log("findDrug", findDrug);
             />
           </div>
 
-          <button className={style.addButton} type="Submit">
-            ADD
+          <button className={style.addButton} type="submit">
+            UPDATE
           </button>
         </form>
       </div>

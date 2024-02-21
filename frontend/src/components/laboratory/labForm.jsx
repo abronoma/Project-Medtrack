@@ -12,6 +12,7 @@ function LabForm() {
 
   const dispatch = useDispatch();
   const [labItemName, setlabItemName] = useState("");
+  const [labType, setLabType] = useState("");
   const [mainCategory, setmainCategory] = useState("");
   const [subCategory, setsubCategory] = useState("");
   const [labItemCode, setlabItemCode] = useState("");
@@ -28,6 +29,7 @@ function LabForm() {
 
     const lab = {
       labItemName,
+      labType,
       mainCategory,
       subCategory,
       labItemCode,
@@ -38,6 +40,8 @@ function LabForm() {
       return toast.error('Drug name is required!')
     } else if ( !mainCategory) {
       return toast.error('Main Category is required!')
+    } else if ( !labType) {
+      return toast.error('Lab Type is required!')
     } else if ( !subCategory) {
       return toast.error('Sub Category  is required!')
     } else if ( !labItemCode) {
@@ -50,6 +54,7 @@ function LabForm() {
     dispatch(addLabs(lab))
     //SETTING THE FORM TO IT'S INITIAL STATE
     setlabItemName("");
+    setLabType("");
     setmainCategory("");
     setsubCategory("");
     setlabItemCode("");
@@ -58,7 +63,7 @@ function LabForm() {
     console.log(JSON.stringify(lab));
 
      // Display success message
-     toast.success("Drug added successfully!")
+     toast.success("Lab entry added successfully!")
   }
 }
 
@@ -81,7 +86,12 @@ function LabForm() {
               placeholder="Type lab name here"
             />
 
-            <select className={style.input} style={{width:'135px'}}>
+            <select className={style.input} style={{width:'135px'}}
+            id="labType"
+            name="labType"
+            value={labType}
+            onChange={(e) => inputChangeHandler(setLabType, e)}
+            placeholder="">
               <option value="" disabled selected>
                 Lab Type
               </option>
@@ -96,8 +106,12 @@ function LabForm() {
             <label htmlFor="mainCategory" className={style.label}>
               Main Category
             </label>
-            <select className={style.input}>
-              <option value="" disabled selected>
+            <select className={style.input}
+             id="mainCategory"
+             name="mainCategory"
+             value={mainCategory}
+             onChange={(e) => inputChangeHandler(setmainCategory, e)}>
+              <option value="">
                 X-ray
               </option>
               <option value="computedTomographyC">computed tomography</option>
@@ -124,7 +138,7 @@ function LabForm() {
 
           <div className={style.marginBottom}>
             <label htmlFor="labItemCode" className={style.label}>
-              lab Item Code
+              Lab Item Code
             </label>
             <input
               type="text"

@@ -6,14 +6,13 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import style from "./ellipsis.module.css";
-import { deleteDrug, updateDrug } from "../../store/thunk";
-import { toast } from "react-toastify";
+import { deleteDrug } from "../../store/thunk";
+import { toast } from "react-toastify"
 import { useNavigate } from "react-router";
 
 
 const Ellipsis = ({drugId}) => {
   const {drug} = useSelector((state) => state.drugs);
-  console.log({ drug });
 
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
@@ -31,6 +30,7 @@ const Ellipsis = ({drugId}) => {
     if (confirmDelete) {
       dispatch(deleteDrug(drugId))
     }
+    toast.success("Deleted successfully!")
   }
 
 
@@ -49,7 +49,12 @@ useEffect(() => {
 }, []);
 
  const toggleMenu = () => {
+  console.log("toggle", toggleMenu);
   setShowMenu((prev) => !prev) }
+  // close the menu if it's open
+  if (showMenu) {
+    setShowMenu(false);
+  }
 
   return (
     <div className={style.btns_container}>
