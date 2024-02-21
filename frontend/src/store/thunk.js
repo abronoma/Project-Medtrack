@@ -14,7 +14,7 @@ export const addDrugs = (drug) => async (dispatch, getState) => {
         })
 
         const newDrug = await data.json()
-        dispatch({type: ADD_DRUGS, payload: newDrug})
+        dispatch({ type: ADD_DRUGS, payload: newDrug })
     } catch (error) {
         console.log('Could not add drug:', error)
     }
@@ -37,36 +37,38 @@ export const fetchDrugs = () => async (dispatch, getState) => {
 
 export const fetchDrug = () => async (dispatch, getState) => {
     try {
-          const data = await fetch(`http://localhost:7000/api/getDrug/${id}`, {
+        const data = await fetch(`http://localhost:7000/api/getDrug/${id}`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json'
             }
         })
         const response = await data.json()
-        dispatch({ type: FETCH_DRUG, payload: response})
+        dispatch({ type: FETCH_DRUG, payload: response })
     } catch (error) {
         console.log("Could not fetch drug:", error);
     }
-
 }
 
-export const updateDrug = (id) => async(dispatch, getState) => {
+
+export const updateDrug =  (drug) => async(dispatch, getState) => {
     try {
-        const data = await fetch(`http://localhost:7000/api/updateDrug/${id}`, {
+        const data = await fetch(`http://localhost:7000/api/updateDrug/${drug._id}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
-            }
+            },
+            body: JSON.stringify(drug)
         })
         const updatedDrug = await data.json()
-        dispatch({type: UPDATE_DRUGS, payload: updatedDrug})
+        dispatch({ type: UPDATE_DRUGS, payload: updatedDrug })
     } catch (error) {
         console.log(error)
     }
 }
 
-export const deleteDrug = (id) => async(dispatch, getState) => {
+
+export const deleteDrug = (id) => async (dispatch, getState) => {
     try {
         const data = await fetch(`http://localhost:7000/api/deleteDrug/${id}`, {
             method: 'DELETE',
@@ -75,7 +77,7 @@ export const deleteDrug = (id) => async(dispatch, getState) => {
             }
         })
         const deletedDrug = await data.json()
-        dispatch({type: DELETE_DRUGS, payload: deletedDrug})
+        dispatch({ type: DELETE_DRUGS, payload: deletedDrug })
     } catch (error) {
         console.log(error)
     }
@@ -108,13 +110,13 @@ export const addLabs = (lab) => async (dispatch, getState) => {
         })
 
         const newLab = await data.json()
-        dispatch({type: ADD_LABS, payload: newLab})
+        dispatch({ type: ADD_LABS, payload: newLab })
     } catch (error) {
         console.log('Could not add lab:', error)
     }
 }
 
-export const updateLab = (id) => async(dispatch, getState) => {
+export const updateLab = (id) => async (dispatch, getState) => {
     try {
         const data = await fetch(`http://localhost:7000/api/updateLab/${id}`, {
             method: 'PUT',
@@ -123,13 +125,13 @@ export const updateLab = (id) => async(dispatch, getState) => {
             }
         })
         const updatedLab = await data.json()
-        dispatch({type: UPDATE_LABS, payload: updatedLab})
+        dispatch({ type: UPDATE_LABS, payload: updatedLab })
     } catch (error) {
         console.log(error)
     }
 }
 
-export const deleteLab = (id) => async(dispatch, getState) => {
+export const deleteLab = (id) => async (dispatch, getState) => {
     try {
         const data = await fetch(`http://localhost:7000/api/deleteLab/${id}`, {
             method: 'DELETE',
@@ -138,7 +140,7 @@ export const deleteLab = (id) => async(dispatch, getState) => {
             }
         })
         const deletedLab = await data.json()
-        dispatch({type: DELETE_LABS, payload: deletedLab})
+        dispatch({ type: DELETE_LABS, payload: deletedLab })
     } catch (error) {
         console.log(error)
     }

@@ -36,8 +36,16 @@
     border-radius: 4px;
 }
 
+.logo p {
+    font-weight: bold;
+}
+
+
 .logo {
     /* flex: 0 0 30%; */
     display: flex;
     margin-left: 8rem;
+    gap: 5px;
+    text-align: center;
+    align-items: center;
 }

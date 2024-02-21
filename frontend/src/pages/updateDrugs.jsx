@@ -34,18 +34,11 @@ function UpdateDrugs() {
   const [unitOfPricing, setUnitOfPricing] = useState(findDrug.unitOfPricing);
   const [price, setPrice] = useState(findDrug.price);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // dispatch(addDrugs(drug));
-    //SETTING THE FORM TO IT'S INITIAL STATE AFTER ADDING
-    // setDrugName(drugName);
-    // setDescription(description);
-    // setUnitOfPricing(unitOfPricing);
-    // setDrugCode(drugCode);
-    // setPrice(price);
-
     const updatedDrug = {
+      _id: id,
       drugName,
       description,
       unitOfPricing,
@@ -54,10 +47,7 @@ function UpdateDrugs() {
     };
 
     dispatch(updateDrug(updatedDrug));
-    dispatch(fetchDrugs());
     navigate('/pharmacy')
-
-
   };
 
   const inputChangeHandler = (setter, e) => {

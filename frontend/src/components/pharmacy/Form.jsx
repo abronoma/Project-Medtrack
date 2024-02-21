@@ -10,7 +10,6 @@ import { toast } from "react-toastify";
 
 function PharmacyForm() {
   const drug = useSelector((state) => state.drugs);
-  console.log({ drug });
 
   const dispatch = useDispatch();
   const [drugName, setDrugName] = useState("");
