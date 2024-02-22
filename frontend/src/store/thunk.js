@@ -2,7 +2,7 @@ import { ADD_LABS, DELETE_LABS, FETCH_LABS, UPDATE_LABS } from "./action/labActi
 import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUG, FETCH_DRUGS, UPDATE_DRUGS } from "./action/pharmActions";
 
 
-// pharamcy thunk
+// pharmacy thunk
 export const addDrugs = (drug) => async (dispatch, getState) => {
     try {
         const data = await fetch('http://localhost:7000/api/addDrug', {
@@ -116,13 +116,15 @@ export const addLabs = (lab) => async (dispatch, getState) => {
     }
 }
 
-export const updateLab = (id) => async (dispatch, getState) => {
+
+export const updateLab = (lab) => async (dispatch, getState) => {
     try {
-        const data = await fetch(`http://localhost:7000/api/updateLab/${id}`, {
+        const data = await fetch(`http://localhost:7000/api/updateLab/${lab._id}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
-            }
+            },
+            body: JSON.stringify(lab)
         })
         const updatedLab = await data.json()
         dispatch({ type: UPDATE_LABS, payload: updatedLab })

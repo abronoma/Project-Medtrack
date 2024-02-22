@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import style from '../components/pharmacy/Form.module.css'
 import { fetchLabs, updateLab } from '../store/thunk';
 
+
 function UpdateLabs() {
     const updatedLab = useSelector((state) => state.labs.labs)
     const dispatch = useDispatch();
@@ -12,6 +13,7 @@ function UpdateLabs() {
 
     const [lab, setLab] = useState({
       labItemName: "",
+      labType: "",
       mainCategory: "",
       labItemCode: "",
       subCategory: "",
@@ -28,16 +30,19 @@ function UpdateLabs() {
 
 
     const [labItemName, setlabItemName] = useState(findLab.labItemName);
+    const [labType, setLabType] = useState(findLab.labType)
     const [mainCategory, setmainCategory] = useState(findLab.mainCategory);
     const [subCategory, setsubCategory] = useState(findLab.subCategory);
     const [labItemCode, setlabItemCode] = useState(findLab.labItemCode);
     const [price, setPrice] = useState(findLab.price);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const lab ={
+        const updatedLab ={
+            _id: id,
             labItemName,
+            labType,
             mainCategory,
             subCategory,
             labItemCode,
@@ -45,6 +50,7 @@ function UpdateLabs() {
         };
 
         dispatch(updateLab(updatedLab))
+        navigate('/laboratory')
     };
 
     const inputChangeHandler = (setter, e) => {
@@ -69,7 +75,11 @@ function UpdateLabs() {
               placeholder="Type lab name here"
             />
 
-            <select className={style.input} style={{width:'135px'}}>
+            <select className={style.input} style={{width:'135px'}}
+            id="labType"
+            name="labType"
+            value={labType}
+            onChange={(e) => inputChangeHandler(setLabType, e)}>
               <option value="" disabled selected>
                 Lab Type
               </option>
@@ -88,7 +98,7 @@ function UpdateLabs() {
                id="mainCategory"
                name="mainCategory"
                value={mainCategory}
-               onChange={(e) => inputChangeHandler(setMainCategory, e)}>
+               onChange={(e) => inputChangeHandler(setmainCategory, e)}>
               <option value="" disabled selected>
                 X-ray
               </option>
@@ -143,7 +153,7 @@ function UpdateLabs() {
               placeholder="2.02"
             />
 
-            <button className={style.addButton} type="Submit">
+            <button className={style.addButton} type="submit">
               UPDATE
             </button>
           </div>

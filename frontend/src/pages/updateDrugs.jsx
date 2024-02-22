@@ -10,7 +10,6 @@ function UpdateDrugs() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const {id} = useParams()
-  
 
   const [drug, setDrug] = useState({
     drugName: "",
