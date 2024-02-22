@@ -123,7 +123,7 @@ function LabForm() {
 
           <div className={style.marginBottom}>
             <label htmlFor="subCategory" className={style.label}>
-              Unit of Pricing
+              Sub Category
             </label>
             <input
               type="text"

@@ -8,6 +8,7 @@ export default function Header() {
     <nav className={style.nav}>
       <div className={style.logo}>
         <img src={logo} alt="" />
+        <p>MedTrack</p>
       </div>
       <div className={style.nav_items}>
         <NavLink to="/">Home </NavLink>
