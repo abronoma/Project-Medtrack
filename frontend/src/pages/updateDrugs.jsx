@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import style from "../../src/components/pharmacy/Form.module.css";
+import style from "./updateForm.module.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchDrugs, updateDrug } from "../store/thunk";
-
 
 function UpdateDrugs() {
   const updatedDrug = useSelector((state) => state.drugs.drugs);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-  const {id} = useParams()
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   const [drug, setDrug] = useState({
     drugName: "",
@@ -17,15 +16,15 @@ function UpdateDrugs() {
     drugCode: "",
     unitOfPricing: "",
     price: "",
-  })
+  });
 
   useEffect(() => {
     dispatch(fetchDrugs());
-  }, [dispatch])
+  }, [dispatch]);
 
   const findDrug = updatedDrug.find((item) => {
-    return item._id === id
-})
+    return item._id === id;
+  });
 
   const [drugName, setDrugName] = useState(findDrug.drugName);
   const [description, setDescription] = useState(findDrug.description);
@@ -42,20 +41,20 @@ function UpdateDrugs() {
       description,
       unitOfPricing,
       drugCode,
-      price
+      price,
     };
 
     dispatch(updateDrug(updatedDrug));
-    navigate('/pharmacy')
+    navigate("/pharmacy");
   };
 
   const inputChangeHandler = (setter, e) => {
-    setter(e.target.value)
-  }
+    setter(e.target.value);
+  };
 
   return (
     <>
-      <div>
+      <div className={style.dflex}>
         <form onSubmit={handleSubmit}>
           <div className={style.marginBottom}>
             <label htmlFor="drugName" className={style.label}>
@@ -132,9 +131,11 @@ function UpdateDrugs() {
             />
           </div>
 
-          <button className={style.addButton} type="submit">
-            UPDATE
-          </button>
+          <div className={style.addButton}>
+            <button type="submit">
+              UPDATE
+            </button>
+          </div>
         </form>
       </div>
     </>

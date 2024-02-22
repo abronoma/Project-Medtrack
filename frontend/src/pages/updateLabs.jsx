@@ -1,61 +1,59 @@
-import React, { useEffect, useState} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams, useNavigate } from 'react-router-dom';
-import style from '../components/pharmacy/Form.module.css'
-import { fetchLabs, updateLab } from '../store/thunk';
-
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
+import style from "./updateForm.module.css";
+import { fetchLabs, updateLab } from "../store/thunk";
 
 function UpdateLabs() {
-    const updatedLab = useSelector((state) => state.labs.labs)
-    const dispatch = useDispatch();
-    const navigate = useNavigate()
-    const {id} = useParams()
+  const updatedLab = useSelector((state) => state.labs.labs);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-    const [lab, setLab] = useState({
-      labItemName: "",
-      labType: "",
-      mainCategory: "",
-      labItemCode: "",
-      subCategory: "",
-      price: "",
-    })
+  const [lab, setLab] = useState({
+    labItemName: "",
+    labType: "",
+    mainCategory: "",
+    labItemCode: "",
+    subCategory: "",
+    price: "",
+  });
 
-    useEffect(() => {
-      dispatch(fetchLabs());
-    }, [dispatch])
+  useEffect(() => {
+    dispatch(fetchLabs());
+  }, [dispatch]);
 
-    const findLab = updatedLab.find((item) => {
-        return item._id === id
-    })
+  const findLab = updatedLab.find((item) => {
+    return item._id === id;
+  });
 
+  const [labItemName, setlabItemName] = useState(findLab.labItemName);
+  const [labType, setLabType] = useState(findLab.labType);
+  const [mainCategory, setmainCategory] = useState(findLab.mainCategory);
+  const [subCategory, setsubCategory] = useState(findLab.subCategory);
+  const [labItemCode, setlabItemCode] = useState(findLab.labItemCode);
+  const [price, setPrice] = useState(findLab.price);
 
-    const [labItemName, setlabItemName] = useState(findLab.labItemName);
-    const [labType, setLabType] = useState(findLab.labType)
-    const [mainCategory, setmainCategory] = useState(findLab.mainCategory);
-    const [subCategory, setsubCategory] = useState(findLab.subCategory);
-    const [labItemCode, setlabItemCode] = useState(findLab.labItemCode);
-    const [price, setPrice] = useState(findLab.price);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        const updatedLab ={
-            _id: id,
-            labItemName,
-            labType,
-            mainCategory,
-            subCategory,
-            labItemCode,
-            price
-        };
-
-        dispatch(updateLab(updatedLab))
-        navigate('/laboratory')
+    const updatedLab = {
+      _id: id,
+      labItemName,
+      labType,
+      mainCategory,
+      subCategory,
+      labItemCode,
+      price,
     };
 
-    const inputChangeHandler = (setter, e) => {
-      setter(e.target.value)
-    }
+    dispatch(updateLab(updatedLab));
+    navigate("/laboratory");
+  };
+
+  const inputChangeHandler = (setter, e) => {
+    setter(e.target.value);
+  };
 
   return (
     <>
@@ -75,11 +73,14 @@ function UpdateLabs() {
               placeholder="Type lab name here"
             />
 
-            <select className={style.input} style={{width:'135px'}}
-            id="labType"
-            name="labType"
-            value={labType}
-            onChange={(e) => inputChangeHandler(setLabType, e)}>
+            <select
+              className={style.input}
+              style={{ width: "135px" }}
+              id="labType"
+              name="labType"
+              value={labType}
+              onChange={(e) => inputChangeHandler(setLabType, e)}
+            >
               <option value="" disabled selected>
                 Lab Type
               </option>
@@ -94,11 +95,13 @@ function UpdateLabs() {
             <label htmlFor="mainCategory" className={style.label}>
               Main Category
             </label>
-            <select className={style.input}
-               id="mainCategory"
-               name="mainCategory"
-               value={mainCategory}
-               onChange={(e) => inputChangeHandler(setmainCategory, e)}>
+            <select
+              className={style.input}
+              id="mainCategory"
+              name="mainCategory"
+              value={mainCategory}
+              onChange={(e) => inputChangeHandler(setmainCategory, e)}
+            >
               <option value="" disabled selected>
                 X-ray
               </option>
@@ -152,17 +155,16 @@ function UpdateLabs() {
               onChange={(e) => inputChangeHandler(setPrice, e)}
               placeholder="2.02"
             />
-
-            <button className={style.addButton} type="submit">
+          </div>
+          <div className={style.addButton}>
+            <button type="submit">
               UPDATE
             </button>
           </div>
         </form>
-
       </div>
-
     </>
-  )
+  );
 }
 
-export default UpdateLabs
+export default UpdateLabs;

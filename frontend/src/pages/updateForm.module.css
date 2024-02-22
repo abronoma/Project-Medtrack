@@ -1,0 +1,82 @@
+.label{
+    flex-direction: row;
+    gap: 5px;
+    border: 1px solid #326A55;
+    color: grey;
+    padding: 15px;
+    width: 140px;
+    text-align: center;
+    margin-left: 20px;
+  }
+  
+  .dflex {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  padding: 2rem 0;
+  margin: 6rem auto;
+  background-color: #F4F6F6;
+  border: 1px solid #F4F6F6;
+  width: fit-content;
+  align-items: center;
+
+  }
+  
+  .marginBottom {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: end;
+  }
+  
+  .input{
+  padding-left: 10px;
+  margin-left: 10px;
+  margin-right: 2rem;
+  width: 280px;
+  height: 56px;
+  font-style: italic;
+  font-size: 1rem;
+  color: grey;
+  background-color: transparent;
+  border: 1px solid #326A55;
+  }
+  
+  .inputtext {
+  opacity: 0.9;
+  }
+  
+  ::placeholder {
+    color: rgb(154, 196, 223);
+    padding-left: 10px;
+  }
+  
+  .formdiv{
+  display: flex;
+  flex-direction: row;
+  }
+
+  .addButton {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    margin: 2rem auto;
+    justify-content: center;
+  }
+  
+  .addButton button {
+  color: white;
+  padding: 10px 25px;
+  height: 40px;
+  border: 0;
+  border-radius: 4px;
+  background-color: #326A55;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  .addButton:hover {
+    background-color: transparent;
+    color: #326A55;
+    border: 1px solid #326A55;
+  }
