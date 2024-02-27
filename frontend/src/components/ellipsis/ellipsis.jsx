@@ -21,6 +21,10 @@ const Ellipsis = ({drugId}) => {
 
   const navigate = useNavigate()
 
+  const handleView = (id) => {
+    navigate(`/fetchdrug/${drugId}`)
+  }
+
   const handleUpdate = (id) => {
     navigate(`/updatedrugs/${id}`)
   }
@@ -63,7 +67,7 @@ useEffect(() => {
       </button>
       {showMenu && (
         <div ref={menuRef} className={style.menu_btns}>
-          <button><MdOutlineRemoveRedEye /> View</button>
+          <button onClick={handleView}><MdOutlineRemoveRedEye /> View</button>
           <button onClick={() => handleUpdate(drugId)}><FaRegEdit /> Edit</button>
           <button onClick={handleDelete}><RiDeleteBin6Line /> Delete</button>
         </div>

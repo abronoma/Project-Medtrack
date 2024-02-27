@@ -95,10 +95,8 @@ function LabForm() {
               <option value="" disabled selected>
                 Lab Type
               </option>
-              <option value="MicroBiology">Micro Biology</option>
-              <option value="ClinicalLab  ">Clinical Lab</option>
-              <option value="ResearchLab">Research Lab</option>
-              <option value="Hematology">Hematology</option>
+              <option value="Radiology">Radiology</option>
+              <option value="Laboratory">Laboratory</option>
             </select>
           </div>
 

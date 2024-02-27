@@ -11,7 +11,7 @@ import { toast } from "react-toastify"
 
 
 const LabEllipsis = ({labId}) => {
-  const {lab} = useSelector((state) => state.drugs);
+  const {lab} = useSelector((state) => state.labs);
 
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
@@ -19,6 +19,10 @@ const LabEllipsis = ({labId}) => {
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
+
+  const handleView = (id) => {
+    navigate(`/fetchlab/${id}`)
+  }
 
   const handleUpdate = (id) => {
     navigate(`/updatelabs/${id}`)
@@ -57,7 +61,7 @@ useEffect(() => {
       </button>
       {showMenu && (
         <div ref={menuRef} className={style.menu_btns}>
-          <button><MdOutlineRemoveRedEye /> View</button>
+          <button onClick={() => handleView(labId)}><MdOutlineRemoveRedEye /> View</button>
           <button onClick={() => handleUpdate(labId)}><FaRegEdit /> Edit</button>
           <button onClick={handleDelete}><RiDeleteBin6Line /> Delete</button>
         </div>

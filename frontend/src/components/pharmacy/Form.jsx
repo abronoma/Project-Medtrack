@@ -111,15 +111,31 @@ function PharmacyForm() {
             <label htmlFor="unitOfPricing" className={style.label}>
               Unit of Pricing
             </label>
-            <input
-              type="text"
+            <select
               className={style.input}
               id="unitOfPricing"
               name="unitOfPricing"
               value={unitOfPricing}
-              onChange={(e) => inputChangeHandler(setUnitOfPricing, e)}
-              placeholder="Table"
-            />
+              placeholder="Tablet"
+              onChange={(e) => inputChangeHandler(setUnitOfPricing, e)}>
+                <option value="Ampoule">Ampoule</option>
+                <option value="Tablet">Tablet</option>
+                <option value="Capsule">Capsule</option>
+                <option value="1 ml">1 ml</option>
+                <option value="20 ml">20 ml</option>                
+                <option value="5 ">5G</option>
+                <option value="2 G">2G</option>
+                <option value="50 G">50 G</option>
+                <option value="Vial">Vial</option>
+                <option value="200 ml">200 ml</option>
+                <option value="Sachet">Sachet</option>
+                <option value="1 Course">1 Course</option>
+                <option value="70 ml">70 ml</option>
+                <option value="100 ml">100 ml</option>
+                <option value="100 G">100 G</option>
+                <option value="Other">Other</option>
+                <input type="text" id="Other" placeholder="Type here..."/>
+              </select>
           </div>
 
           <div className={style.marginBottom}>
