@@ -22,7 +22,7 @@ const labSchema = new Schema({
         // set: (value) => value.toUpperCase(),
     },
 
-    price : {
+    Price : {
         type: Number,
         required: true
     },
