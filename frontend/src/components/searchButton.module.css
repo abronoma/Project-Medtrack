@@ -33,3 +33,17 @@
     background: transparent;
     border: 1px solid #326A55;
   }
+
+
+  @media only screen and (max-width: 600px) {
+
+    .wrappercontainer {
+      right: 22px;
+    }
+    .searchwrapper {
+      height: 50px;
+      width: 100%;
+       text-align: right;
+      position: relative;
+    }
+  }
