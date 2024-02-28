@@ -1,12 +1,12 @@
 import mongoose, { Schema } from "mongoose";
 
-const labSchema = new Schema({
-    labItemName : {
+const pharmacySchema = new Schema({
+    drugName : {
         type: String,
         required: true,
     },
 
-    mainCategory : {
+    description : {
         type: String,
         required: true
     },

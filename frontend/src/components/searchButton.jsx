@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
-import axios from "axios"
+// import axios from "axios"
 
 import style from './searchButton.module.css';
 

@@ -58,6 +58,7 @@
   .addButton {
     margin-top: 20px;
     display: flex;
+    gap: 10px;
     align-items: center;
     margin: 2rem auto;
     justify-content: center;
@@ -75,8 +76,21 @@
   align-items: center;
   }
   
-  .addButton:hover {
+  .addButton button:hover {
     background-color: transparent;
     color: #326A55;
     border: 1px solid #326A55;
+  }
+
+  .addButton .back button {
+    background-color: #0088FE;
+    color: white;
+    font-size: 1.rem;
+    font-weight: bold;
+  }
+
+  .back button:hover {
+    background-color: transparent;
+    color: #0088FE;
+    border: 1px solid #0088FE;
   }

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import style from "./updateForm.module.css";
 import { fetchLabs, updateLab } from "../store/thunk";
+import { toast } from "react-toastify";
+import { RiArrowGoBackFill } from "react-icons/ri";
 
 function UpdateLabs() {
   const updatedLab = useSelector((state) => state.labs.labs);
@@ -19,6 +21,10 @@ function UpdateLabs() {
     price: "",
   });
 
+  const backRoute = () => {
+    navigate("/laboratory")
+  }
+
   useEffect(() => {
     dispatch(fetchLabs());
   }, [dispatch]);
@@ -27,12 +33,12 @@ function UpdateLabs() {
     return item._id === id;
   });
 
-  const [labItemName, setlabItemName] = useState(findLab.labItemName);
-  const [labType, setLabType] = useState(findLab.labType);
-  const [mainCategory, setmainCategory] = useState(findLab.mainCategory);
-  const [subCategory, setsubCategory] = useState(findLab.subCategory);
-  const [labItemCode, setlabItemCode] = useState(findLab.labItemCode);
-  const [price, setPrice] = useState(findLab.price);
+  const [labItemName, setlabItemName] = useState(findLab?.labItemName);
+  const [labType, setLabType] = useState(findLab?.labType);
+  const [mainCategory, setmainCategory] = useState(findLab?.mainCategory);
+  const [subCategory, setsubCategory] = useState(findLab?.subCategory);
+  const [labItemCode, setlabItemCode] = useState(findLab?.labItemCode);
+  const [price, setPrice] = useState(findLab?.price);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -48,6 +54,7 @@ function UpdateLabs() {
     };
 
     dispatch(updateLab(updatedLab));
+    toast.success("Updated successfully!");
     navigate("/laboratory");
   };
 
@@ -155,9 +162,10 @@ function UpdateLabs() {
             />
           </div>
           <div className={style.addButton}>
-            <button type="submit">
-              UPDATE
-            </button>
+           <div className={style.back}>
+           <button onClick={backRoute}><RiArrowGoBackFill/></button>
+           </div>
+            <button type="submit">UPDATE</button>
           </div>
         </form>
       </div>

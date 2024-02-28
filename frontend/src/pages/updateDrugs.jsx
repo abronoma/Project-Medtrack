@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import style from "./updateForm.module.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchDrugs, updateDrug } from "../store/thunk";
+import { toast } from 'react-toastify'
+import { RiArrowGoBackFill } from "react-icons/ri";
 
 
 function UpdateDrugs() {
@@ -19,6 +21,10 @@ function UpdateDrugs() {
     price: "",
   });
 
+  const backRoute = () => {
+    navigate("/pharmacy")
+  }
+
   useEffect(() => {
     dispatch(fetchDrugs());
   }, [dispatch]);
@@ -27,11 +33,11 @@ function UpdateDrugs() {
     return item._id === id;
   });
 
-  const [drugName, setDrugName] = useState(findDrug.drugName);
-  const [description, setDescription] = useState(findDrug.description);
-  const [drugCode, setDrugCode] = useState(findDrug.drugCode);
-  const [unitOfPricing, setUnitOfPricing] = useState(findDrug.unitOfPricing);
-  const [price, setPrice] = useState(findDrug.price);
+  const [drugName, setDrugName] = useState(findDrug?.drugName);
+  const [description, setDescription] = useState(findDrug?.description);
+  const [drugCode, setDrugCode] = useState(findDrug?.drugCode);
+  const [unitOfPricing, setUnitOfPricing] = useState(findDrug?.unitOfPricing);
+  const [price, setPrice] = useState(findDrug?.price);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,6 +52,7 @@ function UpdateDrugs() {
     };
 
     dispatch(updateDrug(updatedDrug));
+    toast.success("Updated successfully!")
     navigate("/pharmacy");
   };
 
@@ -133,9 +140,10 @@ function UpdateDrugs() {
           </div>
 
           <div className={style.addButton}>
-            <button type="submit">
-              UPDATE
-            </button>
+           <div className={style.back}>
+           <button onClick={backRoute}><RiArrowGoBackFill/></button>
+           </div>
+            <button type="submit">UPDATE</button>
           </div>
         </form>
       </div>
