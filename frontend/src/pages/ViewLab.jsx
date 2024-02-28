@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchLab } from "../store/thunk";
-import style from "./viewForm.module.css"
+import style from "./viewForm.module.css";
+import { RiArrowGoBackFill } from "react-icons/ri";
+
 
 const ViewLab = () => {
   const lab = useSelector((state) => state.labs.labs);
@@ -11,13 +13,16 @@ const ViewLab = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-
   useEffect(() => {
-    dispatch(fetchLab())
+    dispatch(fetchLab());
   }, [dispatch]);
 
+  const backRoute = () => {
+    navigate("/laboratory");
+  };
+
   const newLab = lab.find((item) => {
-    return item._id === id
+    return item._id === id;
   });
 
   return (
@@ -29,6 +34,11 @@ const ViewLab = () => {
       <p>Sub-category: {newLab.subCategory}</p>
       <p>Lab tem Code: {newLab.labItemCode}</p>
       <p>Price: {newLab.price}</p>
+      <div className={style.back}>
+        <button onClick={backRoute}>
+          <RiArrowGoBackFill />
+        </button>
+      </div>
     </div>
   );
 };
