@@ -1,12 +1,12 @@
 import mongoose, { Schema } from "mongoose";
 
-const pharmacySchema = new Schema({
-    drugName : {
+const labSchema = new Schema({
+    labItemName : {
         type: String,
         required: true,
     },
 
-    description : {
+    mainCategory : {
         type: String,
         required: true
     },
@@ -22,7 +22,7 @@ const pharmacySchema = new Schema({
         set: (value) => value.toUpperCase(),
     },
 
-    price : {
+    Price : {
         type: Number,
         required: true
     },

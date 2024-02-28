@@ -26,7 +26,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 const PharmStats = ({ inputValue, handleInputChange }) => {
 
     return (
-      <ResponsiveContainer width="100%" minWidth={300} height="100%" minHeight={300}>
+      <ResponsiveContainer width="100%" minWidth={300} height="100%" minHeight={300} style={{zIndex:1}}>
         <PieChart width={400} height={400}>
           <Pie
             data={data}
@@ -43,7 +43,7 @@ const PharmStats = ({ inputValue, handleInputChange }) => {
             ))}
           </Pie>
         </PieChart>
-      </ResponsiveContainer>
+      </ResponsiveContainer >
     );
   }
 

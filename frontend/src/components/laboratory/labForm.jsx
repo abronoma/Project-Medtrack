@@ -35,6 +35,7 @@ function LabForm() {
       labItemCode,
       price,
     };
+    
 
     if (!labItemName) {
       return toast.error('Drug name is required!')
@@ -71,6 +72,12 @@ function LabForm() {
     //THE FORM
     <>
       <div className={style.dflex}>
+
+      <div>
+          <SearchButton />
+        </div>
+
+        
         <form onSubmit={handleSubmit}>
           <div className={style.marginBottom}>
             <label htmlFor="labItemName" className={style.label}>
@@ -95,8 +102,13 @@ function LabForm() {
               <option value="" disabled selected>
                 Lab Type
               </option>
+<<<<<<< HEAD
               <option value="Radiology">Radiology</option>
               <option value="Laboratory">Laboratory</option>
+=======
+              <option value="lab">Laboratory</option>
+              <option value="radio  ">Radiology</option>
+>>>>>>> 9622d4109a08777a8a1c6f80de9ab98be672b1c3
             </select>
           </div>
 
@@ -114,8 +126,6 @@ function LabForm() {
               </option>
               <option value="computedTomographyC">computed tomography</option>
               <option value="fluoroscopy ">fluoroscopy</option>
-              <option value="mammography">mammography</option>
-              <option value="angiography">angiography</option>
             </select>
           </div>
 
@@ -169,9 +179,7 @@ function LabForm() {
           </div>
         </form>
 
-        <div>
-          <SearchButton />
-        </div>
+       
 
         <PharmStats />
       </div>
