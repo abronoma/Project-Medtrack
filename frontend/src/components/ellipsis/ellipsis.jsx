@@ -16,13 +16,14 @@ const Ellipsis = ({drugId}) => {
 
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
+  const buttonRef = useRef(null)
 
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
   const handleView = (id) => {
-    navigate(`/fetchdrug/${drugId}`)
+    navigate(`/fetchdrug/${id}`)
   }
 
   const handleUpdate = (id) => {
@@ -33,14 +34,15 @@ const Ellipsis = ({drugId}) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this drug?")
     if (confirmDelete) {
       dispatch(deleteDrug(drugId))
+      toast.success("Deleted successfully!")
+    } else {
+      toast.error('Not deleted')
     }
-    toast.success("Deleted successfully!")
-  }
-
+  } 
 
 useEffect(() => {
   const handleOutsideClick = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
+    if (menuRef.current && !menuRef.current.contains(event.target) && event.target !== buttonRef.current) {
       setShowMenu(false);
     }
   };
@@ -53,21 +55,16 @@ useEffect(() => {
 }, []);
 
  const toggleMenu = () => {
-  console.log("toggle", toggleMenu);
   setShowMenu((prev) => !prev) }
-  // close the menu if it's open
-  // if (showMenu) {
-  //   setShowMenu(false);
-  // }
 
   return (
     <div className={style.btns_container}>
-      <button onClick={toggleMenu}>
+      <button onClick={toggleMenu} ref={buttonRef}>
         <IoEllipsisVertical />
       </button>
       {showMenu && (
         <div ref={menuRef} className={style.menu_btns}>
-          <button onClick={handleView}><MdOutlineRemoveRedEye /> View</button>
+          <button onClick={() => handleView(drugId)}><MdOutlineRemoveRedEye /> View</button>
           <button onClick={() => handleUpdate(drugId)}><FaRegEdit /> Edit</button>
           <button onClick={handleDelete}><RiDeleteBin6Line /> Delete</button>
         </div>

@@ -15,6 +15,7 @@ const LabEllipsis = ({labId}) => {
 
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
+  const buttonRef = useRef(null)
 
   const dispatch = useDispatch()
 
@@ -32,14 +33,15 @@ const LabEllipsis = ({labId}) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this lab entry?")
     if (confirmDelete) {
       dispatch(deleteLab(labId))
+      toast.success("Deleted successfully!")
+    } else {
+      toast.error('Not deleted')
     }
-    toast.success("Deleted successfully!")
-  }
-
+  } 
 
 useEffect(() => {
   const handleOutsideClick = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
+    if (menuRef.current && !menuRef.current.contains(event.target) && event.target !== buttonRef.current) {
       setShowMenu(false);
     }
   };
@@ -52,11 +54,11 @@ useEffect(() => {
 }, []);
 
  const toggleMenu = () => {
-  setShowMenu((prev) => !prev) }
+  setShowMenu((prev) => !prev)}
 
   return (
     <div className={style.btns_container}>
-      <button onClick={toggleMenu}>
+      <button onClick={toggleMenu} ref={buttonRef}>
         <IoEllipsisVertical />
       </button>
       {showMenu && (

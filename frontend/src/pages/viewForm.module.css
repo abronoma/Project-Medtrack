@@ -1,0 +1,21 @@
+.viewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    justify-content: center;
+    border: 1px solid #F4F6F6;
+    width: 400px;
+    border-radius: 6px;
+    margin: 8rem auto;
+    margin-bottom: 4rem;
+    /* background-color: #F4F6F6; */
+}
+
+.viewContainer h2 {
+    margin: 20px 0;
+  }
+  
+  .viewContainer p {
+    margin: 8px;
+  }
