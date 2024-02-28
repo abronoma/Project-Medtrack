@@ -77,6 +77,10 @@ function PharmacyForm() {
     //THE FORM
     <>
       <div className={style.dflex}>
+      <div>
+          <SearchButton />
+        </div>
+        
         <form onSubmit={handleSubmit}>
           <div className={style.marginBottom}>
             <label htmlFor="drugName" className={style.label}>
@@ -158,11 +162,10 @@ function PharmacyForm() {
           </div>
         </form>
 
-        <div>
-          <SearchButton />
-        </div>
+       
 
-        <PharmStats/>
+       <div> <PharmStats/>
+       </div>
       </div>
 
       <Table />
