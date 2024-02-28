@@ -1,4 +1,4 @@
-import { ADD_LABS, DELETE_LABS, FETCH_LABS, UPDATE_LABS } from "./action/labActions";
+import { ADD_LABS, DELETE_LABS, FETCH_LAB, FETCH_LABS, UPDATE_LABS } from "./action/labActions";
 import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUG, FETCH_DRUGS, UPDATE_DRUGS } from "./action/pharmActions";
 
 
@@ -98,6 +98,23 @@ export const fetchLabs = () => async (dispatch, getState) => {
         console.log('Could not fetch labs:', error)
     }
 }
+
+export const fetchLab = (lab) => async (dispatch, getState) => {
+    try {
+        const data = await fetch(`http://localhost:7000/api/getLab/${lab._id}`, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(lab)
+        })
+        const response = await data.json()
+        dispatch({ type: FETCH_LAB, payload: response })
+    } catch (error) {
+        console.log("Could not fetch lab:", error);
+    }
+}
+
 
 export const addLabs = (lab) => async (dispatch, getState) => {
     try {

@@ -4,6 +4,7 @@ import style from "./updateForm.module.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchDrugs, updateDrug } from "../store/thunk";
 
+
 function UpdateDrugs() {
   const updatedDrug = useSelector((state) => state.drugs.drugs);
   const dispatch = useDispatch();

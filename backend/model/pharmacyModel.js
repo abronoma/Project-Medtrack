@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const labSchema = new Schema({
     labItemName : {
         type: String,
-        required: true
+        required: true,
     },
 
     mainCategory : {
@@ -16,10 +16,10 @@ const labSchema = new Schema({
         required: true
     },
 
-    labItemCode : {
-        type: Number,
+    drugCode : {
+        type: String,
         required: true,
-        // set: (value) => value.toUpperCase(),
+        set: (value) => value.toUpperCase(),
     },
 
     Price : {
@@ -31,6 +31,5 @@ const labSchema = new Schema({
     timestamps: true,
 })
 
-const lab = mongoose.model('lab', labSchema)
-// console.log(pharmacy.findById('65c772e62b6f55bd5fe27b5b'));
-export default lab
+const pharmacy = mongoose.model('pharmacy', pharmacySchema)
+export default pharmacy

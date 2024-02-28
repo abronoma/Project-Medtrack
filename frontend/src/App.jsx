@@ -7,8 +7,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import UpdateDrugs from "./pages/updateDrugs";
 import UpdateLabs from "./pages/updateLabs";
-import ViewDrug from "./components/pharmacy/ViewDrug";
-import ViewLab from "./components/laboratory/ViewLab";
+import ViewDrug from "./pages/ViewDrug";
+import ViewLab from "./pages/ViewLab";
 
 const router = createBrowserRouter([
   {

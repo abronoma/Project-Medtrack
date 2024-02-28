@@ -102,8 +102,13 @@ function LabForm() {
               <option value="" disabled selected>
                 Lab Type
               </option>
+<<<<<<< HEAD
+              <option value="Radiology">Radiology</option>
+              <option value="Laboratory">Laboratory</option>
+=======
               <option value="lab">Laboratory</option>
               <option value="radio  ">Radiology</option>
+>>>>>>> 9622d4109a08777a8a1c6f80de9ab98be672b1c3
             </select>
           </div>
 

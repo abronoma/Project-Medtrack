@@ -1,11 +1,11 @@
 import lab from '../model/labModel.js'
 
 export const addLab = async (req, res) => {
-    const { labItemName, mainCategory, subCategory, labItemCode, Price } = req.body
+    const { labItemName, labType, mainCategory, subCategory, labItemCode, price } = req.body
     
     try {
         const labEntry = new lab({
-            labItemName, mainCategory, subCategory, labItemCode, Price
+            labItemName, labType, mainCategory, subCategory, labItemCode, price
         })
         const result = await labEntry.save()
         res.status(201).send(result)

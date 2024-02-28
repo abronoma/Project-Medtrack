@@ -11,14 +11,19 @@ import { toast } from "react-toastify"
 
 
 const LabEllipsis = ({labId}) => {
-  const {lab} = useSelector((state) => state.drugs);
+  const {lab} = useSelector((state) => state.labs);
 
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
+  const buttonRef = useRef(null)
 
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
+
+  const handleView = (id) => {
+    navigate(`/fetchlab/${id}`)
+  }
 
   const handleUpdate = (id) => {
     navigate(`/updatelabs/${id}`)
@@ -28,14 +33,15 @@ const LabEllipsis = ({labId}) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this lab entry?")
     if (confirmDelete) {
       dispatch(deleteLab(labId))
+      toast.success("Deleted successfully!")
+    } else {
+      toast.error('Not deleted')
     }
-    toast.success("Deleted successfully!")
-  }
-
+  } 
 
 useEffect(() => {
   const handleOutsideClick = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
+    if (menuRef.current && !menuRef.current.contains(event.target) && event.target !== buttonRef.current) {
       setShowMenu(false);
     }
   };
@@ -48,16 +54,16 @@ useEffect(() => {
 }, []);
 
  const toggleMenu = () => {
-  setShowMenu((prev) => !prev) }
+  setShowMenu((prev) => !prev)}
 
   return (
     <div className={style.btns_container}>
-      <button onClick={toggleMenu}>
+      <button onClick={toggleMenu} ref={buttonRef}>
         <IoEllipsisVertical />
       </button>
       {showMenu && (
         <div ref={menuRef} className={style.menu_btns}>
-          <button><MdOutlineRemoveRedEye /> View</button>
+          <button onClick={() => handleView(labId)}><MdOutlineRemoveRedEye /> View</button>
           <button onClick={() => handleUpdate(labId)}><FaRegEdit /> Edit</button>
           <button onClick={handleDelete}><RiDeleteBin6Line /> Delete</button>
         </div>
