@@ -6,6 +6,11 @@ const labSchema = new Schema({
         required: true
     },
 
+    labType: {
+        type: String,
+        required: true
+    },
+
     mainCategory : {
         type: String,
         required: true
@@ -17,9 +22,9 @@ const labSchema = new Schema({
     },
 
     labItemCode : {
-        type: Number,
+        type: String,
         required: true,
-        // set: (value) => value.toUpperCase(),
+        set: (value) => value.toUpperCase(),
     },
 
     price : {
