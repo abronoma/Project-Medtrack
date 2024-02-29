@@ -9,11 +9,13 @@
     border-radius: 6px;
     margin: 8rem auto;
     margin-bottom: 4rem;
-    /* background-color: #F4F6F6; */
+    background-color: #F4F6F6;
+    color: #326A55;
 }
 
 .viewContainer h2 {
     margin: 20px 0;
+    color: #0088FE;
   }
   
   .viewContainer p {

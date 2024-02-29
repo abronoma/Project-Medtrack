@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <nav className={style.nav}>
       <div className={style.logo}>
-        <img src={logo} alt="" />
+        <img src={logo} alt="Medtrack logo" />
         <p>MedTrack</p>
       </div>
       <div className={style.nav_items}>

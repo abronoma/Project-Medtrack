@@ -6,10 +6,9 @@ import { toast } from "react-toastify";
 import LabTable from "./LabTable";
 import { addLabs } from "../../store/thunk";
 import PharmStats from "../Piechart";
-
+import { IoMdAdd } from "react-icons/io";
 
 function LabForm() {
-
   const dispatch = useDispatch();
   const [labItemName, setlabItemName] = useState("");
   const [labType, setLabType] = useState("");
@@ -17,7 +16,6 @@ function LabForm() {
   const [subCategory, setsubCategory] = useState("");
   const [labItemCode, setlabItemCode] = useState("");
   const [price, setPrice] = useState("");
-
 
   // handling changes
   const inputChangeHandler = (setFunction, event) => {
@@ -35,49 +33,43 @@ function LabForm() {
       labItemCode,
       price,
     };
-    
 
     if (!labItemName) {
-      return toast.error('Drug name is required!')
-    } else if ( !mainCategory) {
-      return toast.error('Main Category is required!')
-    } else if ( !labType) {
-      return toast.error('Lab Type is required!')
-    } else if ( !subCategory) {
-      return toast.error('Sub Category  is required!')
-    } else if ( !labItemCode) {
-      return toast.error('Lab Item code is required!')
-    } else if ( !price) {
-      return toast.error('Price is required!')
+      return toast.error("Drug name is required!");
+    } else if (!mainCategory) {
+      return toast.error("Main Category is required!");
+    } else if (!labType) {
+      return toast.error("Lab Type is required!");
+    } else if (!subCategory) {
+      return toast.error("Sub Category  is required!");
+    } else if (!labItemCode) {
+      return toast.error("Lab Item code is required!");
+    } else if (!price) {
+      return toast.error("Price is required!");
     } else {
+      dispatch(addLabs(lab));
+      //SETTING THE FORM TO IT'S INITIAL STATE
+      setlabItemName("");
+      setLabType("");
+      setmainCategory("");
+      setsubCategory("");
+      setlabItemCode("");
+      setPrice("");
 
-    
-    dispatch(addLabs(lab))
-    //SETTING THE FORM TO IT'S INITIAL STATE
-    setlabItemName("");
-    setLabType("");
-    setmainCategory("");
-    setsubCategory("");
-    setlabItemCode("");
-    setPrice("");
+      console.log(JSON.stringify(lab));
 
-    console.log(JSON.stringify(lab));
-
-     // Display success message
-     toast.success("Lab entry added successfully!")
-  }
-}
+      // Display success message
+      toast.success("Lab entry added successfully!");
+    }
+  };
 
   return (
-    //THE FORM
     <>
+    <div className={style.header}>
+        <h1>Laboratory Inventory</h1>
+        <SearchButton />
+      </div>
       <div className={style.dflex}>
-
-      <div>
-          <SearchButton />
-        </div>
-
-        
         <form onSubmit={handleSubmit}>
           <div className={style.marginBottom}>
             <label htmlFor="labItemName" className={style.label}>
@@ -93,12 +85,15 @@ function LabForm() {
               placeholder="Type lab name here"
             />
 
-            <select className={style.input} style={{width:'135px'}}
-            id="labType"
-            name="labType"
-            value={labType}
-            onChange={(e) => inputChangeHandler(setLabType, e)}
-            placeholder="">
+            <select
+              className={style.input}
+              style={{ width: "135px" }}
+              id="labType"
+              name="labType"
+              value={labType}
+              onChange={(e) => inputChangeHandler(setLabType, e)}
+              placeholder=""
+            >
               <option value="" disabled selected>
                 Lab Type
               </option>
@@ -111,14 +106,14 @@ function LabForm() {
             <label htmlFor="mainCategory" className={style.label}>
               Main Category
             </label>
-            <select className={style.input}
-             id="mainCategory"
-             name="mainCategory"
-             value={mainCategory}
-             onChange={(e) => inputChangeHandler(setmainCategory, e)}>
-              <option value="">
-                X-ray
-              </option>
+            <select
+              className={style.input}
+              id="mainCategory"
+              name="mainCategory"
+              value={mainCategory}
+              onChange={(e) => inputChangeHandler(setmainCategory, e)}
+            >
+              <option value="">X-ray</option>
               <option value="computedTomographyC">computed tomography</option>
               <option value="fluoroscopy ">fluoroscopy</option>
             </select>
@@ -168,13 +163,12 @@ function LabForm() {
               placeholder="2.02"
             />
 
-            <button className={style.addButton} type="Submit">
-              ADD
-            </button>
+            <div className={style.addButton}>
+              <IoMdAdd className={style.icon} />
+              <button type="Submit">ADD</button>
+            </div>
           </div>
         </form>
-
-       
 
         <PharmStats />
       </div>

@@ -6,7 +6,7 @@ import Table from "./Table";
 import { useDispatch, useSelector } from "react-redux";
 import { addDrugs } from "../../store/thunk";
 import { toast } from "react-toastify";
-
+import { IoMdAdd } from "react-icons/io";
 
 function PharmacyForm() {
   const drug = useSelector((state) => state.drugs);
@@ -18,14 +18,13 @@ function PharmacyForm() {
   const [unitOfPricing, setUnitOfPricing] = useState("");
   const [price, setPrice] = useState("");
 
-
   // defining state for the piechart
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   // handling changes
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
-  }
+  };
 
   const inputChangeHandler = (setFunction, event) => {
     setFunction(event.target.value);
@@ -43,43 +42,39 @@ function PharmacyForm() {
     };
 
     if (!drugName) {
-      return toast.error('Drug name is required!')
-    } else if ( !description) {
-      return toast.error('Description is required!')
-    } else if ( !unitOfPricing) {
-      return toast.error('Unit of Pricing is required!')
-    } else if ( !drugCode) {
-      return toast.error('Drug code is required!')
-    } else if ( !price) {
-      return toast.error('Price is required!')
+      return toast.error("Drug name is required!");
+    } else if (!description) {
+      return toast.error("Description is required!");
+    } else if (!unitOfPricing) {
+      return toast.error("Unit of Pricing is required!");
+    } else if (!drugCode) {
+      return toast.error("Drug code is required!");
+    } else if (!price) {
+      return toast.error("Price is required!");
     } else {
-  
-    dispatch(addDrugs(drug))
-    //SETTING THE FORM TO IT'S INITIAL STATE AFTER ADDING
-    setDrugName("");
-    setDescription("");
-    setUnitOfPricing("");
-    setDrugCode("");
-    setPrice("");
+      dispatch(addDrugs(drug));
+      //SETTING THE FORM TO IT'S INITIAL STATE AFTER ADDING
+      setDrugName("");
+      setDescription("");
+      setUnitOfPricing("");
+      setDrugCode("");
+      setPrice("");
 
-    console.log(JSON.stringify(drug));
-    // Form submission happens here
+      console.log(JSON.stringify(drug));
+      // Form submission happens here
 
-    // Display success message
-    toast.success("Drug added successfully!")
-  }
-    
+      // Display success message
+      toast.success("Drug added successfully!");
+    }
   };
 
-
   return (
-    //THE FORM
     <>
+      <div className={style.header}>
+        <h1>Pharmacy Inventory</h1>
+        <SearchButton />
+      </div>
       <div className={style.dflex}>
-      <div>
-          <SearchButton />
-        </div>
-        
         <form onSubmit={handleSubmit}>
           <div className={style.marginBottom}>
             <label htmlFor="drugName" className={style.label}>
@@ -121,25 +116,26 @@ function PharmacyForm() {
               name="unitOfPricing"
               value={unitOfPricing}
               placeholder="Tablet"
-              onChange={(e) => inputChangeHandler(setUnitOfPricing, e)}>
-                <option value="Ampoule">Ampoule</option>
-                <option value="Tablet">Tablet</option>
-                <option value="Capsule">Capsule</option>
-                <option value="1 ml">1 ml</option>
-                <option value="20 ml">20 ml</option>                
-                <option value="5 ">5G</option>
-                <option value="2 G">2G</option>
-                <option value="50 G">50 G</option>
-                <option value="Vial">Vial</option>
-                <option value="200 ml">200 ml</option>
-                <option value="Sachet">Sachet</option>
-                <option value="1 Course">1 Course</option>
-                <option value="70 ml">70 ml</option>
-                <option value="100 ml">100 ml</option>
-                <option value="100 G">100 G</option>
-                <option value="Other">Other</option>
-                <input type="text" id="Other" placeholder="Type here..."/>
-              </select>
+              onChange={(e) => inputChangeHandler(setUnitOfPricing, e)}
+            >
+              <option value="Ampoule">Ampoule</option>
+              <option value="Tablet">Tablet</option>
+              <option value="Capsule">Capsule</option>
+              <option value="1 ml">1 ml</option>
+              <option value="20 ml">20 ml</option>
+              <option value="5 ">5G</option>
+              <option value="2 G">2G</option>
+              <option value="50 G">50 G</option>
+              <option value="Vial">Vial</option>
+              <option value="200 ml">200 ml</option>
+              <option value="Sachet">Sachet</option>
+              <option value="1 Course">1 Course</option>
+              <option value="70 ml">70 ml</option>
+              <option value="100 ml">100 ml</option>
+              <option value="100 G">100 G</option>
+              <option value="Other">Other</option>
+              <input type="text" id="Other" placeholder="Type here..." />
+            </select>
           </div>
 
           <div className={style.marginBottom}>
@@ -171,16 +167,17 @@ function PharmacyForm() {
               placeholder="2.02"
             />
 
-            <button className={style.addButton} type="Submit">
-              ADD
-            </button>
+            <div className={style.addButton}>
+              <IoMdAdd className={style.icon} />
+              <button type="Submit">ADD</button>
+            </div>
           </div>
         </form>
 
-       
-
-       <div> <PharmStats/>
-       </div>
+        <div>
+          {" "}
+          <PharmStats />
+        </div>
       </div>
 
       <Table />

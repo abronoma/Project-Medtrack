@@ -1,12 +1,12 @@
 .table_container {
     display: flex;
-    padding: 3rem 0;
+    padding-bottom: 2rem;
     margin: 0 auto;
 }
 
 .table_container table{
     width: 100%;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     border-collapse: collapse;
   }
 
@@ -23,7 +23,7 @@ table thead tr th{
   table tbody tr td{
     padding: 1rem;
     text-align: center;
-    border-bottom: 1px solid grey;
+    /* border-bottom: 1px solid grey; */
   }
 
   .btns {

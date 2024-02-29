@@ -1,19 +1,18 @@
-
 .wrapper {
     position:relative;
-    
   }
   
   .wrappercontainer {
     position: absolute;
     right: 150px;
   }
+
   .icon {
     height: 1.7rem;
     width: 1.5rem;
-    color: #326A55;
+    color: white;
     opacity: 1;
-    padding: 4px;
+    padding: 0 10px;
     position: absolute;
     box-sizing:border-box;
     top:50%;
@@ -31,7 +30,11 @@
     border: 0;
     right: 150px;
     background: transparent;
-    border: 1px solid #326A55;
+    border: 1px solid white;
+  }
+
+  .input::placeholder {
+    color: white;
   }
 
 
