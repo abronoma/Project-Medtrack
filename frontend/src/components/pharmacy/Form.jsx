@@ -6,7 +6,6 @@ import Table from "./Table";
 import { useDispatch, useSelector } from "react-redux";
 import { addDrugs } from "../../store/thunk";
 import { toast } from "react-toastify";
-import { IoMdAdd } from "react-icons/io";
 
 function PharmacyForm() {
   const drug = useSelector((state) => state.drugs);
@@ -87,7 +86,7 @@ function PharmacyForm() {
               name="drugName"
               value={drugName}
               onChange={(e) => inputChangeHandler(setDrugName, e)}
-              placeholder="Type drug name here"
+              placeholder="Type drug name here..."
             />
           </div>
 
@@ -102,7 +101,7 @@ function PharmacyForm() {
               name="description"
               value={description}
               onChange={(e) => inputChangeHandler(setDescription, e)}
-              placeholder="Lorem ipsum with little information"
+              placeholder="Type your description..."
             />
           </div>
 
@@ -115,7 +114,7 @@ function PharmacyForm() {
               id="unitOfPricing"
               name="unitOfPricing"
               value={unitOfPricing}
-              placeholder="Tablet"
+              placeholder="Select..."
               onChange={(e) => inputChangeHandler(setUnitOfPricing, e)}
             >
               <option value="Ampoule">Ampoule</option>
@@ -168,7 +167,6 @@ function PharmacyForm() {
             />
 
             <div className={style.addButton}>
-              <IoMdAdd className={style.icon} />
               <button type="Submit">ADD</button>
             </div>
           </div>
