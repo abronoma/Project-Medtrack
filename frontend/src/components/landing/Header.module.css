@@ -9,6 +9,7 @@
   background-color: #f4f6f6;
   padding: 1rem;
   text-align: center;
+  width: 140px;
 }
 
 .nav_items {
@@ -16,23 +17,31 @@
   flex-direction: column;
   gap: 2rem;
   align-items: center;
+  text-align: center;
 }
 
-.nav_items a {
+.nav_link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-decoration: none;
   color: #3754a4;
   border-radius: 4px;
-  padding: 6px 12px;
+  padding: 6px;
 }
 
-.nav_items a:hover {
+.nav_link:hover {
   background-color: #326A55;
   color: #f4f6f6;
   font-weight: 500;
 }
 
-.nav_items a.active {
+.nav_link.active {
   color: black;
+}
+
+.nav_icon {
+  font-size: 1.5rem; /* Adjust icon size as needed */
 }
 
 .logo {
@@ -52,12 +61,4 @@
   font-weight: bold;
   color: #3754a4;
   margin-bottom: 2rem;
-}
-
-.logo {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  text-align: center;
-  align-items: center;
 }

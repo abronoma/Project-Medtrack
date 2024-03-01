@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import LabTable from "./LabTable";
 import { addLabs } from "../../store/thunk";
 import PharmStats from "../Piechart";
-import { IoMdAdd } from "react-icons/io";
 
 function LabForm() {
   const dispatch = useDispatch();
@@ -35,7 +34,7 @@ function LabForm() {
     };
 
     if (!labItemName) {
-      return toast.error("Drug name is required!");
+      return toast.error("Lab item name is required!");
     } else if (!mainCategory) {
       return toast.error("Main Category is required!");
     } else if (!labType) {
@@ -164,7 +163,6 @@ function LabForm() {
             />
 
             <div className={style.addButton}>
-              <IoMdAdd className={style.icon} />
               <button type="Submit">ADD</button>
             </div>
           </div>
