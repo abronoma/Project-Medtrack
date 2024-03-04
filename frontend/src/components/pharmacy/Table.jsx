@@ -1,20 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import style from './Table.module.css'
 import Ellipsis from "../ellipsis/ellipsis.jsx";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDrugs } from '../../store/thunk.js'
 
-function Table() {
-  const {drugs} = useSelector(state => state.drugs)
+function Table({searchValue}) {
+  const { drugs } = useSelector(state => state.drugs)
  
+  const [searchedDrugs, setSearchDrugs] = useState([])
+
+  // Function to filter objects based on keyword
+  const filterObjectsByKeyword = (array, keyword) => {
+    return array.filter(obj =>
+      Object.values(obj).some(value =>
+        typeof value === 'string' && value.toLowerCase().includes(keyword.toLowerCase())
+      )
+    );
+  };
 
   // dispatching actions
   const dispatch = useDispatch()
  
+  useEffect(() => {
+    if (searchValue !== "") {
+      console.log(searchValue)
+      const filteredDrugs = filterObjectsByKeyword(drugs, searchValue);
+      setSearchDrugs(filteredDrugs);
+    } else {
+      setSearchDrugs(drugs);
+    }
+  }, [searchValue, drugs]);
 
   useEffect(() => {
     dispatch(fetchDrugs());
-  }, [])
+  }, [dispatch]);
 
   return (
     <div className={style.table_container}>
@@ -30,7 +49,7 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {drugs.map((drug) => (
+          {searchedDrugs.map((drug) => (
             <tr key={drug._id}>
               <td>{drug.drugName}</td>
               <td>{drug.description}</td>
@@ -48,5 +67,4 @@ function Table() {
   );
 }
 
-
-export default Table
+export default Table;
