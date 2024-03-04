@@ -4,15 +4,19 @@ export const addDrug = async (req, res) => {
     const { 
         drugName, description, unitOfPricing, drugCode, price
     } = req.body
+
+    // Extract the value from the unitOfPricing object
+    const unitOfPricingValue = unitOfPricing.value;
     
     try {
         const drugEntry = new pharmacy({
-            drugName, description, unitOfPricing, drugCode, price
+            drugName, description, unitOfPricing: unitOfPricingValue, drugCode, price
         })
         const result = await drugEntry.save()
         res.status(201).send(result)
     } catch (error) {
         console.log(error);
+        res.status(400).send({ message: "Failed to add drug", error })
     }
 }
 
