@@ -22,12 +22,16 @@ function PharmacyForm() {
 
   // handling changes
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+    console.log(event)
+     setInputValue(event);
+     console.log(inputValue)
   };
 
   const inputChangeHandler = (setFunction, event) => {
     setFunction(event.target.value);
   };
+
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,7 +41,7 @@ function PharmacyForm() {
       description,
       unitOfPricing,
       drugCode,
-      price,
+      price
     };
 
     if (!drugName) {
@@ -71,7 +75,7 @@ function PharmacyForm() {
     <>
       <div className={style.header}>
         <h1>Pharmacy Inventory</h1>
-        <SearchButton />
+        <SearchButton onInputChange={handleInputChange} />
       </div>
       <div className={style.dflex}>
         <form onSubmit={handleSubmit}>
@@ -178,7 +182,7 @@ function PharmacyForm() {
         </div>
       </div>
 
-      <Table />
+      <Table searchValue = {inputValue} />
     </>
   );
 }

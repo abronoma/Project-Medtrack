@@ -9,6 +9,7 @@ import UpdateDrugs from "./pages/updateDrugs";
 import UpdateLabs from "./pages/updateLabs";
 import ViewDrug from "./pages/ViewDrug";
 import ViewLab from "./pages/ViewLab";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const router = createBrowserRouter([
   {

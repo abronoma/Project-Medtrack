@@ -21,14 +21,17 @@
   }
   
   .input {
-    width: 150px;
+    width: 250px;
     height: 10px;
     box-sizing:border-box;
     padding-left: 1.5rem;
     padding: 15px 45px;
-    border-radius: 20px;
+    border-radius: 15px;
     border: 0;
     right: 150px;
+    outline: 0;
+    cursor: pointer;
+
     background: transparent;
     border: 1px solid white;
   }
