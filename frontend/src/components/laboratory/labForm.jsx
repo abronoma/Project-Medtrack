@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import LabTable from "./LabTable";
 import { addLabs } from "../../store/thunk";
 import PharmStats from "../Piechart";
+import Creatable from 'react-select/creatable';
+
 
 function LabForm() {
   const dispatch = useDispatch();
@@ -16,9 +18,27 @@ function LabForm() {
   const [labItemCode, setlabItemCode] = useState("");
   const [price, setPrice] = useState("");
 
+  const labOptions = [
+    { value: 'Laboratory', label: 'Laboratory' },
+    { value: 'Radiology', label: 'Radiology' }
+  ]
+
+  const mainCatOptions = [
+    { value: 'Radiography', label: 'Radiography' },
+    { value: 'Magnetic Resonance Imaging(MRI)', label: 'Magnetic Resonance Imaging(MRI)' },
+    { value: 'Computed Tomography(CT)', label: 'Computed Tomography(CT)' },
+    { value: 'Ultrasound(Sonography)', label: 'Ultrasound(Sonography)' },
+    { value: 'Interventional Radiology', label: 'Interventional Radiology' },
+    { value: 'Nuclear Medicine Imaging', label: 'Nuclear Medicine Imaging' },
+  ]
+
   // handling changes
   const inputChangeHandler = (setFunction, event) => {
     setFunction(event.target.value);
+  };
+
+  const labOptionsInputChange = (setter, value) => {
+    setter(value);
   };
 
   const handleSubmit = (event) => {
@@ -84,38 +104,31 @@ function LabForm() {
               placeholder="Type lab name here"
             />
 
-            <select
+            <Creatable
+              isClearable
               className={style.input}
               style={{ width: "135px" }}
               id="labType"
               name="labType"
               value={labType}
-              onChange={(e) => inputChangeHandler(setLabType, e)}
-              placeholder=""
-            >
-              <option value="" disabled selected>
-                Lab Type
-              </option>
-              <option value="Radiology">Radiology</option>
-              <option value="Laboratory">Laboratory</option>
-            </select>
+              options={labOptions}
+              onChange={(e) => labOptionsInputChange(setLabType, e)}
+              placeholder="Lab Type"
+            />
           </div>
 
           <div className={style.marginBottom}>
             <label htmlFor="mainCategory" className={style.label}>
               Main Category
             </label>
-            <select
+            <Creatable
               className={style.input}
               id="mainCategory"
               name="mainCategory"
               value={mainCategory}
-              onChange={(e) => inputChangeHandler(setmainCategory, e)}
-            >
-              <option value="">X-ray</option>
-              <option value="computedTomographyC">computed tomography</option>
-              <option value="fluoroscopy ">fluoroscopy</option>
-            </select>
+              options={mainCatOptions}
+              onChange={(e) => labOptionsInputChange(setmainCategory, e)}
+            />
           </div>
 
           <div className={style.marginBottom}>

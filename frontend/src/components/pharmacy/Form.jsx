@@ -6,6 +6,8 @@ import Table from "./Table";
 import { useDispatch, useSelector } from "react-redux";
 import { addDrugs } from "../../store/thunk";
 import { toast } from "react-toastify";
+import Creatable from 'react-select/creatable';
+
 
 function PharmacyForm() {
   const drug = useSelector((state) => state.drugs);
@@ -14,8 +16,26 @@ function PharmacyForm() {
   const [drugName, setDrugName] = useState("");
   const [description, setDescription] = useState("");
   const [drugCode, setDrugCode] = useState("");
-  const [unitOfPricing, setUnitOfPricing] = useState("");
+  const [unitOfPricing, setUnitOfPricing] = useState(null);
   const [price, setPrice] = useState("");
+
+  const options = [
+    { value: 'Ampoule', label: 'Ampoule' },
+    { value: 'Tablet', label: 'Tablet' },
+    { value: 'Capsule', label: 'Capsule' },
+    { value: '1 ml', label: '1 ml' },
+    { value: '20 ml', label: '20 ml' },
+    { value: '5 G', label: '5G' },
+    { value: '2 G', label: '2G' },
+    { value: '50 G', label: '50 G' },
+    { value: 'Vial', label: 'Vial' },
+    { value: '200 ml', label: '200 ml' },
+    { value: 'Sachet', label: 'Sachet' },
+    { value: '1 Course', label: '1 Course' },
+    { value: '70 ml', label: '70 ml' },
+    { value: '100 ml', label: '100 ml' },
+    { value: '100 G', label: '100 G' },
+ ];
 
   // defining state for the piechart
   const [inputValue, setInputValue] = useState("");
@@ -26,6 +46,11 @@ function PharmacyForm() {
      setInputValue(event);
      console.log(inputValue)
   };
+
+   // Handle input changes for unit of pricing
+ const optionsInputChange = (setter, value) => {
+  setter(value);
+};
 
   const inputChangeHandler = (setFunction, event) => {
     setFunction(event.target.value);
@@ -113,32 +138,16 @@ function PharmacyForm() {
             <label htmlFor="unitOfPricing" className={style.label}>
               Unit of Pricing
             </label>
-            <select
+            <Creatable
+              isClearable
               className={style.input}
               id="unitOfPricing"
               name="unitOfPricing"
               value={unitOfPricing}
               placeholder="Select..."
-              onChange={(e) => inputChangeHandler(setUnitOfPricing, e)}
-            >
-              <option value="Ampoule">Ampoule</option>
-              <option value="Tablet">Tablet</option>
-              <option value="Capsule">Capsule</option>
-              <option value="1 ml">1 ml</option>
-              <option value="20 ml">20 ml</option>
-              <option value="5 ">5G</option>
-              <option value="2 G">2G</option>
-              <option value="50 G">50 G</option>
-              <option value="Vial">Vial</option>
-              <option value="200 ml">200 ml</option>
-              <option value="Sachet">Sachet</option>
-              <option value="1 Course">1 Course</option>
-              <option value="70 ml">70 ml</option>
-              <option value="100 ml">100 ml</option>
-              <option value="100 G">100 G</option>
-              <option value="Other">Other</option>
-              <input type="text" id="Other" placeholder="Type here..." />
-            </select>
+              options={options}
+              onChange={(e) => optionsInputChange(setUnitOfPricing, e)}
+            />
           </div>
 
           <div className={style.marginBottom}>
