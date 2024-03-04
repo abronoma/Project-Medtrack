@@ -19,6 +19,7 @@
   border: 1px solid #F4F6F6;
   width: fit-content;
   align-items: center;
+  height: 150vh;
 
   }
   
@@ -74,6 +75,7 @@
   font-weight: bold;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
   }
   
   .addButton button:hover {
@@ -87,6 +89,7 @@
     color: white;
     font-size: 1.rem;
     font-weight: bold;
+    padding-bottom: 6px;
   }
 
   .back button:hover {

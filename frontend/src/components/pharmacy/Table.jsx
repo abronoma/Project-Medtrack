@@ -8,6 +8,8 @@ function Table({searchValue}) {
   const { drugs } = useSelector(state => state.drugs)
  
   const [searchedDrugs, setSearchDrugs] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 5
 
   // Function to filter objects based on keyword
   const filterObjectsByKeyword = (array, keyword) => {
@@ -17,6 +19,14 @@ function Table({searchValue}) {
       )
     );
   };
+
+  function truncateDescription(description, maxWords=20) {
+    if (description.length > maxWords) {
+      return description.slice(0, maxWords) + "...";
+    } else {
+      return description;
+    }
+  }
 
   // dispatching actions
   const dispatch = useDispatch()
@@ -35,6 +45,16 @@ function Table({searchValue}) {
     dispatch(fetchDrugs());
   }, [dispatch]);
 
+  // calculate total pages
+  const totalPages = Math.ceil(searchedDrugs.length / itemsPerPage)
+
+  const indexOfLastItem = currentPage * itemsPerPage
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  const currentItems = searchedDrugs.slice(indexOfFirstItem, indexOfLastItem)
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
+
   return (
     <div className={style.table_container}>
       <table>
@@ -52,7 +72,8 @@ function Table({searchValue}) {
           {searchedDrugs.map((drug) => (
             <tr key={drug._id}>
               <td>{drug.drugName}</td>
-              <td>{drug.description}</td>
+              <td>{truncateDescription(drug.description)}
+              </td>
               <td>{drug.unitOfPricing}</td>
               <td>{drug.drugCode}</td>
               <td>{drug.price}</td>
@@ -63,6 +84,12 @@ function Table({searchValue}) {
           ))}
         </tbody>
       </table>
+      <div>
+        {Array.from({ length: totalPages }, (_, index) => {
+          <button key= {index} onClick={() => paginate(index + 1)}>
+          {index + 1}</button>
+        })}
+      </div>
     </div>
   );
 }

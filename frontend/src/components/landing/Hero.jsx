@@ -9,10 +9,10 @@ export default function Hero() {
     <div className={style.hero}>
       <div className={style.maintext}>
         <div className={style.text}>
-        <h1>Health Records For All</h1>
+          <h1>Health Records For All</h1>
         </div>
       </div>
-      
+
       <div className={style.pharm}>
         <img src={pharm} alt="pharmacist on duty" />
       </div>
@@ -20,4 +20,4 @@ export default function Hero() {
   );
 }
 
-<div ></div>;
+<div></div>;
