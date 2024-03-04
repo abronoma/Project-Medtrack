@@ -123,8 +123,7 @@ function PharmacyForm() {
             <label htmlFor="description" className={style.label}>
               Description
             </label>
-            <input
-              type="text"
+            <textarea
               className={style.input}
               id="description"
               name="description"

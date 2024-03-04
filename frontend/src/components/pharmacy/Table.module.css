@@ -2,10 +2,11 @@
     display: flex;
     padding-bottom: 2rem;
     margin: 0 auto;
+    margin-left: 4rem;
 }
 
 .table_container table{
-    width: 100%;
+    width: 94%;
     /* border: 1px solid grey; */
     border-collapse: collapse;
   }
@@ -17,12 +18,12 @@ table thead {
 
 table thead tr th{
     padding: 1rem;
-    color: rgb(154, 196, 223);
+    color: #3754a4;
   }
 
   table tbody tr td{
     padding: 1rem;
-    text-align: center;
+    /* text-align: center; */
     /* border-bottom: 1px solid grey; */
   }
 

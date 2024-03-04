@@ -50,6 +50,22 @@ export const fetchDrug = () => async (dispatch, getState) => {
     }
 }
 
+// fetch data for piechart 
+export const fetchPrice =  () => async (dispatch, getState) => {
+    try {
+        const data = await fetch(`http://localhost:7000/api/getPrice/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        const response = await data.json()
+        dispatch({ type: FETCH_DRUG, payload: response })
+    } catch (error) {
+        console.log("Could not fetch drug:", error);
+    }
+}
+
 
 export const updateDrug =  (drug) => async(dispatch, getState) => {
     try {
