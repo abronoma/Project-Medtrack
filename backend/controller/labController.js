@@ -4,10 +4,11 @@ export const addLab = async (req, res) => {
     const { labItemName, labType, mainCategory, subCategory, labItemCode, price } = req.body
     
     const labTypeValue = labType.value;
-
+    const mainCatValue = mainCategory.value
+ 
     try {
         const labEntry = new lab({
-            labItemName, labType: labTypeValue, mainCategory, subCategory, labItemCode, price
+            labItemName, labType: labTypeValue, mainCategory: mainCatValue, subCategory, labItemCode, price
         })
         const result = await labEntry.save()
         res.status(201).send(result)
