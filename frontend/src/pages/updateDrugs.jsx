@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { fetchDrugs, updateDrug } from "../store/thunk";
 import { toast } from 'react-toastify'
 import { RiArrowGoBackFill } from "react-icons/ri";
+import Creatable from 'react-select/creatable';
 
 
 function UpdateDrugs() {
@@ -12,6 +13,25 @@ function UpdateDrugs() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const options = [
+    { value: 'Ampoule', label: 'Ampoule' },
+    { value: 'Tablet', label: 'Tablet' },
+    { value: 'Capsule', label: 'Capsule' },
+    { value: '1 ml', label: '1 ml' },
+    { value: '20 ml', label: '20 ml' },
+    { value: '5 G', label: '5G' },
+    { value: '2 G', label: '2G' },
+    { value: '50 G', label: '50 G' },
+    { value: 'Vial', label: 'Vial' },
+    { value: '200 ml', label: '200 ml' },
+    { value: 'Sachet', label: 'Sachet' },
+    { value: '1 Course', label: '1 Course' },
+    { value: '70 ml', label: '70 ml' },
+    { value: '100 ml', label: '100 ml' },
+    { value: '100 G', label: '100 G' },
+    { value: 'Other', label: 'Other' },
+ ];
 
   const [drug, setDrug] = useState({
     drugName: "",
@@ -29,24 +49,36 @@ function UpdateDrugs() {
     dispatch(fetchDrugs());
   }, [dispatch]);
 
-  const findDrug = updatedDrug.find((item) => {
-    return item._id === id;
-  });
+
+  const findDrug = useSelector((state) => state.drugs.drugs.find(item => item._id === id)) 
+    // return item._id === id;
+
+    useEffect(() => {
+      if (findDrug) {
+        setUnitOfPricing(findOption(findDrug.unitOfPricing));
+      }
+    }, [findDrug])
+
+  const findOption = (value) => {
+    return options.find(option => option.value === value) || { value: 'Other', label: 'Other'}
+  }
 
   const [drugName, setDrugName] = useState(findDrug?.drugName);
   const [description, setDescription] = useState(findDrug?.description);
   const [drugCode, setDrugCode] = useState(findDrug?.drugCode);
-  const [unitOfPricing, setUnitOfPricing] = useState(findDrug?.unitOfPricing);
+  const [unitOfPricing, setUnitOfPricing] = useState(findOption(findDrug?.unitOfPricing));
   const [price, setPrice] = useState(findDrug?.price);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const unitOfPricingValue = unitOfPricing ? unitOfPricing.value : '';
+
     const updatedDrug = {
       _id: id,
       drugName,
       description,
-      unitOfPricing,
+      unitOfPricing: unitOfPricingValue,
       drugCode,
       price,
     };
@@ -54,6 +86,10 @@ function UpdateDrugs() {
     dispatch(updateDrug(updatedDrug));
     toast.success("Updated successfully!")
     navigate("/pharmacy");
+  };
+
+  const optionsInputChange = (setter, value) => {
+    setter(value);
   };
 
   const inputChangeHandler = (setter, e) => {
@@ -98,14 +134,15 @@ function UpdateDrugs() {
             <label htmlFor="unitOfPricing" className={style.label}>
               Unit of Pricing
             </label>
-            <input
-              type="text"
+            <Creatable
+              isClearable
               className={style.input}
               id="unitOfPricing"
               name="unitOfPricing"
               value={unitOfPricing}
-              onChange={(e) => inputChangeHandler(setUnitOfPricing, e)}
-              placeholder="Table"
+              placeholder="Select..."
+              options={options}
+              onChange={(e) => optionsInputChange(setUnitOfPricing, e)}
             />
           </div>
 

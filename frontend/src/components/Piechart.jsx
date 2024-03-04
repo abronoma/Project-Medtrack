@@ -1,12 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
+// const data = [
+//   { name: 'Group A', value: 400 },
+//   { name: 'Group B', value: 300 },
+//   { name: 'Group C', value: 300 },
+//   { name: 'Group D', value: 200 },
+// ];
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -24,6 +24,18 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 };
 
 const PharmStats = ({ inputValue, handleInputChange }) => {
+
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  useEffect(() => {
+    fetch('http://localhost:7000/api/getDrugs')
+    .then(response => response.json())
+    .then(data => setData(data))
+    .catch(error => console.error('Error fetching data:', error));
+  }, [])
+
 
     return (
       <ResponsiveContainer width="100%" minWidth={300} height="100%" minHeight={300} style={{zIndex:1}}>

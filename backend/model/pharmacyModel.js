@@ -22,7 +22,7 @@ const pharmacySchema = new Schema({
         set: (value) => value.toUpperCase(),
     },
 
-    Price : {
+    price : {
         type: Number,
         required: true
     },

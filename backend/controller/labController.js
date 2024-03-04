@@ -3,14 +3,17 @@ import lab from '../model/labModel.js'
 export const addLab = async (req, res) => {
     const { labItemName, labType, mainCategory, subCategory, labItemCode, price } = req.body
     
+    const labTypeValue = labType.value;
+
     try {
         const labEntry = new lab({
-            labItemName, labType, mainCategory, subCategory, labItemCode, price
+            labItemName, labType: labTypeValue, mainCategory, subCategory, labItemCode, price
         })
         const result = await labEntry.save()
         res.status(201).send(result)
     } catch (error) {
         console.log(error);
+        res.status(400).send({ message: "Failed to add lab item", error })
     }
 }
 
