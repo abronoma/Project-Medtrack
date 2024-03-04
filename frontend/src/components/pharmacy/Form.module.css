@@ -50,6 +50,20 @@ background-color: transparent;
 
 }
 
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+padding-left: 10px;
+width: 280px;
+height: 56px;
+font-style: italic;
+color: #326A55 !important;
+background-color: transparent !important;
+/* border: 1px solid #326A55; */
+}
+
 ::placeholder {
   color: #326A55 !important;
   padding-left: 10px;
