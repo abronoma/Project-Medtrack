@@ -5,10 +5,13 @@ export const addLab = async (req, res) => {
     
     const labTypeValue = labType.value;
     const mainCatValue = mainCategory.value
+
+    // convert price to decimals
+    const decimalPrice = parseFloat(price).toFixed(2);
  
     try {
         const labEntry = new lab({
-            labItemName, labType: labTypeValue, mainCategory: mainCatValue, subCategory, labItemCode, price
+            labItemName, labType: labTypeValue, mainCategory: mainCatValue, subCategory, labItemCode, price: decimalPrice
         })
         const result = await labEntry.save()
         res.status(201).send(result)

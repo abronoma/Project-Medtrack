@@ -4,16 +4,19 @@ const pharmacySchema = new Schema({
     drugName : {
         type: String,
         required: true,
+        set: (value) => value.charAt(0).toUpperCase() + value.slice(1)
     },
 
     description : {
         type: String,
-        required: true
+        required: true,
+        set: (value) => value.charAt(0).toUpperCase() + value.slice(1)
     },
 
     unitOfPricing : {
         type: String,
-        required: true
+        required: true,
+        set: (value) => value.charAt(0).toUpperCase() + value.slice(1)
     },
 
     drugCode : {

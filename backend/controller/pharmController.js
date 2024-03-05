@@ -8,10 +8,13 @@ export const addDrug = async (req, res) => {
 
     // Extract the value from the unitOfPricing object
     const unitOfPricingValue = unitOfPricing.value;
+
+    // convert price to decimals
+    const decimalPrice = parseFloat(price).toFixed(2);
     
     try {
         const drugEntry = new pharmacy({
-            drugName, description, unitOfPricing: unitOfPricingValue, drugCode, price
+            drugName, description, unitOfPricing: unitOfPricingValue, drugCode, price: decimalPrice
         })
         const result = await drugEntry.save()
         res.status(201).send(result)

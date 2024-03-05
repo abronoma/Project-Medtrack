@@ -3,22 +3,26 @@ import mongoose, { Schema } from "mongoose";
 const labSchema = new Schema({
     labItemName : {
         type: String,
-        required: true
+        required: true,
+        set: (value) => value.charAt(0).toUpperCase() + value.slice(1)
     },
 
     labType: {
         type: String,
-        required: true
+        required: true,
+        set: (value) => value.charAt(0).toUpperCase() + value.slice(1)
     },
 
     mainCategory : {
         type: String,
-        required: true
+        required: true,
+        set: (value) => value.charAt(0).toUpperCase() + value.slice(1)
     },
 
     subCategory : {
         type: String,
-        required: true
+        required: true,
+        set: (value) => value.charAt(0).toUpperCase() + value.slice(1)
     },
 
     labItemCode : {
@@ -33,9 +37,8 @@ const labSchema = new Schema({
     },
 },
 {    
-    timestamps: true
+    timestamps: true,
 })
 
 const lab = mongoose.model('lab', labSchema)
-console.log(lab.findById(''));
 export default lab
