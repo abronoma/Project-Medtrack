@@ -52,6 +52,7 @@ function Table({searchValue}) {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
   const currentItems = searchedDrugs.slice(indexOfFirstItem, indexOfLastItem)
 
+  // to change the page
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
 
@@ -64,12 +65,12 @@ function Table({searchValue}) {
             <th>Description</th>
             <th>Unit of Pricing</th>
             <th>Drug Code</th>
-            <th>Price</th>
+            <th>Price (GH₵)</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {searchedDrugs.map((drug) => (
+          {currentItems.map((drug) => (
             <tr key={drug._id}>
               <td>{drug.drugName}</td>
               <td>{truncateDescription(drug.description)}
@@ -84,11 +85,14 @@ function Table({searchValue}) {
           ))}
         </tbody>
       </table>
-      <div>
-        {Array.from({ length: totalPages }, (_, index) => {
-          <button key= {index} onClick={() => paginate(index + 1)}>
-          {index + 1}</button>
-        })}
+      <div className={style.pagination}>
+        {Array.from({ length: totalPages }, (_, index) => (
+           <button key= {index} onClick={() => paginate(index + 1)}>
+           {index + 1}
+           </button>
+        )
+         
+        )}
       </div>
     </div>
   );
