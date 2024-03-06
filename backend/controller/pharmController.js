@@ -1,5 +1,4 @@
 import pharmacy from "../model/pharmacyModel.js";
-// import PharmacyModel from "../model/pharmacyModel.js"
 
 export const addDrug = async (req, res) => {
     const { 
@@ -73,23 +72,31 @@ export const deleteDrug = async (req, res) => {
 // fetching data for pie chart
 export const getPrice = async (req, res) => {
     try {
-        const priceCount = await pharmacy.aggregate([
+        const topExpensiveDrugs = await pharmacy.aggregate([
             {
                 $group: {
-                    _id: '$price',
+                    _id: { price: '$price', drugName: '$drugName' },
                     count: { $sum: 1},
                 },
             },
+            {
+               $sort: { 'count': -1 } 
+            },
+            {
+                $limit: 5
+            },
         ]);
-        console.log(priceCount);
+        console.log(topExpensiveDrugs);
 
-        if (!priceCount || priceCount.length === 0) {
-            return res.status(404).json({ message: "Price not found" })
+        if (!topExpensiveDrugs || topExpensiveDrugs.length === 0) {
+            return res.status(404).json({ message: "Prices not found" })
         }
 
-        const priceAccumulator = priceCount.reduce(
+        const priceAccumulator = topExpensiveDrugs.reduce(
             (acc, {_id, count }) => {
-                acc[_id] = count;
+                const { price, drugName } = _id;
+                const key = `${price} - ${drugName}`;
+                acc[key] = count;
                 return acc;
             },
             {}
