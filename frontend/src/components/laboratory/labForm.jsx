@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import style from "../pharmacy/Form.module.css";
+import style from "./labForm.module.css";
 import { useDispatch } from "react-redux";
 import SearchButton from "../searchButton";
 import { toast } from "react-toastify";
@@ -18,6 +18,7 @@ function LabForm() {
   const [labItemCode, setlabItemCode] = useState("");
   const [price, setPrice] = useState("");
   const [inputValue, setInputValue] = useState("");
+  console.log({inputValue});
 
 
   const labOptions = [
@@ -54,15 +55,6 @@ function LabForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-
-  
-  // const handleInputChange = (event) => {
-  //   console.log(event)
-  //   setInputValue(event);
-  //   console.log(inputValue)
-  // };
-
-
 
     const lab = {
       labItemName,
@@ -126,7 +118,7 @@ function LabForm() {
 
             <Creatable
               isClearable
-              className={style.input}
+              className={style.labType}
               style={{ width: "135px" }}
               id="labType"
               name="labType"
@@ -208,7 +200,7 @@ function LabForm() {
 
       </div>
 
-      <LabTable />
+      <LabTable searchValue={inputValue}/>
     </>
   );
 }

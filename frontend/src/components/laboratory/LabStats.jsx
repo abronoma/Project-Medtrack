@@ -65,9 +65,11 @@ const LabStats = () => {
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-between",
-      width: "100%",
+      width: "90%",
       height: "100%",
     }}>
+    <h6 style={{ marginBottom: "20px" }}>Lab Stats</h6>
+
       <div>
         <ResponsiveContainer
           width="30%"

@@ -1,52 +1,52 @@
 import React, { useEffect, useState } from "react";
-import style from '../pharmacy/Table.module.css'
+import style from "../pharmacy/Table.module.css";
 import Ellipsis from "../laboratory/labEllipsis.jsx";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { fetchLabs } from "../../store/thunk.js";
 
 
+function LabTable({ searchValue }) {
+  const { labs } = useSelector((state) => state.labs);
 
+  const [searchedLabs, setSearchLabs] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 5
 
+   // Function to filter objects based on keyword
+   const filterLabsBySearchTerm = (labs, searchTerm) => {
+    const searchTermLower = searchTerm.toLowerCase()
 
-
-  function LabTable({searchValue}) {
-  const {labs} = useSelector(state => state.labs)
-  console.log("labs", labs);
-
-
-  const [searchedLabs, setSearchLabs] = useState([])
-
-  // dispatching actions
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(fetchLabs())
-  }, [])
-
+    const filteredItems = labs.filter((lab) => lab.labItemName.toLowerCase().includes(searchTermLower) ||
+    lab.labItemCode.toLowerCase().includes(searchTermLower))
+    return filteredItems
+  };
+  
+   // dispatching actions
+   const dispatch = useDispatch();
 
   useEffect(() => {
     if (searchValue !== "") {
-      console.log(searchValue)
-      const filteredLabs = filterObjectsByKeyword(labs, searchValue);
+      console.log(searchValue);
+      const filteredLabs = filterLabsBySearchTerm(labs, searchValue);
       setSearchLabs(filteredLabs);
     } else {
       setSearchLabs(labs);
     }
   }, [searchValue, labs]);
 
+  useEffect(() => {
+    dispatch(fetchLabs());
+  }, [dispatch]);
 
+  // calculate total pages
+  const totalPages = Math.ceil(searchedLabs.length / itemsPerPage)
 
-   // Function to filter objects based on keyword
-   
-   const filterObjectsByKeyword = (array, keyword) => {
-    if(keyword && array) return [];
-    return array.filter(obj =>
-      Object.values(obj).some(value =>
-        typeof value === 'string' && value.toLowerCase().includes(keyword.toLowerCase())
-      )
-    );
-  };
+  const indexOfLastItem = currentPage * itemsPerPage
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  const currentItems = searchedLabs.slice(indexOfFirstItem, indexOfLastItem)
 
+  // to change the page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   return (
     <div className={style.table_container}>
@@ -63,7 +63,7 @@ import { fetchLabs } from "../../store/thunk.js";
           </tr>
         </thead>
         <tbody>
-          {searchedLabs.map((lab) => (
+          {currentItems.map((lab) => (
             <tr key={lab._id}>
               <td>{lab.labItemName}</td>
               <td>{lab.labType}</td>
@@ -72,15 +72,22 @@ import { fetchLabs } from "../../store/thunk.js";
               <td>{lab.labItemCode}</td>
               <td>{lab.price}</td>
               <td className={style.btns}>
-                <Ellipsis labId={lab._id}/>
+                <Ellipsis labId={lab._id} />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <div className={style.pagination}>
+        {Array.from({ length: totalPages }, (_, index) => (
+           <button key= {index} onClick={() => paginate(index + 1)}>
+           {index + 1}
+           </button>
+        )
+        )}
+      </div>
     </div>
   );
 }
 
-
-export default LabTable
+export default LabTable;

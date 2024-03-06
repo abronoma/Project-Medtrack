@@ -20,7 +20,6 @@
 
 .dflex {
   display: flex;
-  /* gap: 100px; */
   padding: 2rem 0;
   margin: 4rem;
   background-color: #f4f6f6;
