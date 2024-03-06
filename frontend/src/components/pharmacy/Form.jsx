@@ -35,7 +35,7 @@ function PharmacyForm() {
     { value: '70 ml', label: '70 ml' },
     { value: '100 ml', label: '100 ml' },
     { value: '100 G', label: '100 G' },
- ];
+  ];
 
   // defining state for the piechart
   const [inputValue, setInputValue] = useState("");
@@ -43,20 +43,18 @@ function PharmacyForm() {
   // handling changes
   const handleInputChange = (event) => {
     console.log(event)
-     setInputValue(event);
-     console.log(inputValue)
+    setInputValue(event);
+    console.log(inputValue)
   };
 
-   // Handle input changes for unit of pricing
- const optionsInputChange = (setter, value) => {
-  setter(value);
-};
+  // Handle input changes for unit of pricing
+  const optionsInputChange = (setter, value) => {
+    setter(value);
+  };
 
   const inputChangeHandler = (setFunction, event) => {
     setFunction(event.target.value);
   };
-
-  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -100,7 +98,6 @@ function PharmacyForm() {
     <>
       <div className={style.header}>
         <h1>Pharmacy Inventory</h1>
-        <SearchButton onInputChange={handleInputChange} />
       </div>
       <div className={style.dflex}>
         <form onSubmit={handleSubmit}>
@@ -189,9 +186,16 @@ function PharmacyForm() {
           {" "}
           <PharmStats />
         </div>
+
+        
+      </div>
+      
+      <div>
+        <SearchButton onInputChange={handleInputChange} />
+
       </div>
 
-      <Table searchValue = {inputValue} />
+      <Table searchValue={inputValue} />
     </>
   );
 }
