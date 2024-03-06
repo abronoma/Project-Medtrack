@@ -1,13 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import style from '../pharmacy/Table.module.css'
 import Ellipsis from "../laboratory/labEllipsis.jsx";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLabs } from "../../store/thunk.js";
 
 
-function LabTable() {
+
+
+
+
+  function LabTable({searchValue}) {
   const {labs} = useSelector(state => state.labs)
   console.log("labs", labs);
+
+
+  const [searchedLabs, setSearchLabs] = useState([])
 
   // dispatching actions
   const dispatch = useDispatch()
@@ -15,6 +22,31 @@ function LabTable() {
   useEffect(() => {
     dispatch(fetchLabs())
   }, [])
+
+
+  useEffect(() => {
+    if (searchValue !== "") {
+      console.log(searchValue)
+      const filteredLabs = filterObjectsByKeyword(labs, searchValue);
+      setSearchLabs(filteredLabs);
+    } else {
+      setSearchLabs(labs);
+    }
+  }, [searchValue, labs]);
+
+
+
+   // Function to filter objects based on keyword
+   
+   const filterObjectsByKeyword = (array, keyword) => {
+    if(keyword && array) return [];
+    return array.filter(obj =>
+      Object.values(obj).some(value =>
+        typeof value === 'string' && value.toLowerCase().includes(keyword.toLowerCase())
+      )
+    );
+  };
+
 
   return (
     <div className={style.table_container}>
@@ -31,7 +63,7 @@ function LabTable() {
           </tr>
         </thead>
         <tbody>
-          {labs.map((lab) => (
+          {searchedLabs.map((lab) => (
             <tr key={lab._id}>
               <td>{lab.labItemName}</td>
               <td>{lab.labType}</td>

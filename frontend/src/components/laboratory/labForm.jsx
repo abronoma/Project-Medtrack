@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "../pharmacy/Form.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import SearchButton from "../searchButton";
 import { toast } from "react-toastify";
 import LabTable from "./LabTable";
@@ -17,6 +17,8 @@ function LabForm() {
   const [subCategory, setsubCategory] = useState("");
   const [labItemCode, setlabItemCode] = useState("");
   const [price, setPrice] = useState("");
+  const [inputValue, setInputValue] = useState("");
+
 
   const labOptions = [
     { value: 'Laboratory', label: 'Laboratory' },
@@ -33,6 +35,14 @@ function LabForm() {
   ]
 
   // handling changes
+
+  const handleInputChange = (event) => {
+    console.log(event)
+    setInputValue(event);
+    console.log(inputValue)
+   }
+
+
   const inputChangeHandler = (setFunction, event) => {
     setFunction(event.target.value);
   };
@@ -43,6 +53,16 @@ function LabForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
+
+  
+  // const handleInputChange = (event) => {
+  //   console.log(event)
+  //   setInputValue(event);
+  //   console.log(inputValue)
+  // };
+
+
 
     const lab = {
       labItemName,
@@ -86,7 +106,7 @@ function LabForm() {
     <>
     <div className={style.header}>
         <h1>Laboratory Inventory</h1>
-        <SearchButton />
+       
       </div>
       <div className={style.dflex}>
         <form onSubmit={handleSubmit}>
@@ -182,6 +202,10 @@ function LabForm() {
         </form>
 
         <PharmStats />
+      </div>
+      <div>
+        <SearchButton onInputChange={handleInputChange} />
+
       </div>
 
       <LabTable />
