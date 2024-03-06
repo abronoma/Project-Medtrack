@@ -1,4 +1,4 @@
-import { ADD_LABS, DELETE_LABS, FETCH_LABS, UPDATE_LABS } from "../action/labActions.js"
+import { ADD_LABS, DELETE_LABS, FETCH_LAB, FETCH_LABS, FETCH_LABTYPE, UPDATE_LABS } from "../action/labActions.js"
 
 const initialState = {
     labs: []
@@ -12,6 +12,14 @@ export const labReducer = (state = initialState, action) => {
 
         case FETCH_LABS: {
             return {labs: action.payload}
+        }
+
+        case FETCH_LAB: {
+            return {labs: action.payload}
+        }
+
+        case FETCH_LABTYPE: {
+            return { ... state, labs: action.payload }
         }
 
         case UPDATE_LABS: {

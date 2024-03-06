@@ -28,7 +28,7 @@ const ViewDrug = () => {
     <>
       <div className={style.viewContainer}>
         <h2>Drug Details</h2>
-        <p>Drug ID: {newDrug._id}</p>
+        <p>Drug ID: {newDrug?._id}</p>
         <p>Drug Name: {newDrug?.drugName}</p>
         <p>Description: {newDrug?.description}</p>
         <p>Unit of Pricing: {newDrug?.unitOfPricing}</p>
