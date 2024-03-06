@@ -1,5 +1,5 @@
-import { ADD_LABS, DELETE_LABS, FETCH_LAB, FETCH_LABS, UPDATE_LABS } from "./action/labActions";
-import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUG, FETCH_DRUGS, UPDATE_DRUGS } from "./action/pharmActions";
+import { ADD_LABS, DELETE_LABS, FETCH_LAB, FETCH_LABS, FETCH_LABTYPE, UPDATE_LABS } from "./action/labActions";
+import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUG, FETCH_DRUGS, FETCH_PRICES, UPDATE_DRUGS } from "./action/pharmActions";
 
 
 // pharmacy thunk
@@ -53,16 +53,16 @@ export const fetchDrug = () => async (dispatch, getState) => {
 // fetch data for piechart 
 export const fetchPrice =  () => async (dispatch, getState) => {
     try {
-        const data = await fetch(`http://localhost:7000/api/getPrice/${id}`, {
+        const data = await fetch(`http://localhost:7000/api/price-count`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json'
             }
         })
         const response = await data.json()
-        dispatch({ type: FETCH_DRUG, payload: response })
+        dispatch({ type: FETCH_PRICES, payload: response })
     } catch (error) {
-        console.log("Could not fetch drug:", error);
+        console.log("Could not fetch prices:", error);
     }
 }
 
@@ -130,6 +130,22 @@ export const fetchLab = (lab) => async (dispatch, getState) => {
         console.log("Could not fetch lab:", error);
     }
 }
+
+// fetch data for pie chart
+export const fetchLabType = () => async (dispatch, getState) => {
+    try {
+        const data = await fetch(`http://localhost:7000/api/labCount`, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        const response = await data.json()
+        dispatch({ type: FETCH_LABTYPE, payload: response })
+    } catch (error) {
+        console.log("Could not fetch lab types:", error);
+    }
+} 
 
 
 export const addLabs = (lab) => async (dispatch, getState) => {

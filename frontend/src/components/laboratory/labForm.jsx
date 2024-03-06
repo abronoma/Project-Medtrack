@@ -5,8 +5,8 @@ import SearchButton from "../searchButton";
 import { toast } from "react-toastify";
 import LabTable from "./LabTable";
 import { addLabs } from "../../store/thunk";
-import PharmStats from "../Piechart";
 import Creatable from 'react-select/creatable';
+import LabStats from "./LabStats";
 
 
 function LabForm() {
@@ -201,7 +201,7 @@ function LabForm() {
           </div>
         </form>
 
-        <PharmStats />
+        <LabStats />
       </div>
       <div>
         <SearchButton onInputChange={handleInputChange} />

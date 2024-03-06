@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./Form.module.css";
-import PharmStats from "../Piechart";
+import PharmStats from "./PharmacyStats";
 import SearchButton from "../searchButton";
 import Table from "./Table";
 import { useDispatch, useSelector } from "react-redux";
-import { addDrugs } from "../../store/thunk";
+import { addDrugs, fetchPrice } from "../../store/thunk";
 import { toast } from "react-toastify";
 import Creatable from 'react-select/creatable';
 
@@ -18,6 +18,7 @@ function PharmacyForm() {
   const [drugCode, setDrugCode] = useState("");
   const [unitOfPricing, setUnitOfPricing] = useState(null);
   const [price, setPrice] = useState("");
+
 
   const options = [
     { value: 'Ampoule', label: 'Ampoule' },

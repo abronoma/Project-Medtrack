@@ -66,3 +66,35 @@ export const deleteLab = async (req, res) => {
         console.log(error);
     }
 }
+
+
+export const getLabType = async (req, res) => {
+    try {
+        const labCount = await lab.aggregate([
+            {
+                $group: {
+                    _id: '$labType',
+                    count: { $sum: 1},
+                },
+            },
+        ]);
+        console.log(labCount);
+
+        if (!labCount || labCount.length === 0) {
+            return res.status(404).json({ message: "Lab not found" })
+        }
+
+        const labAccumulator = labCount.reduce(
+            (acc, {_id, count }) => {
+                acc[_id] = count;
+                return acc;
+            },
+            {}
+        )
+        console.log(labAccumulator);
+        res.status(200).json(labAccumulator);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error.message})
+    }
+}

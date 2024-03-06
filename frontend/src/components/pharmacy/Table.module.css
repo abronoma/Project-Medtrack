@@ -7,7 +7,7 @@
 }
 
 .table_container table{
-    width: 94%;
+    width: 91%;
     border-collapse: collapse;
     overflow: auto;
     flex-grow: 1;
@@ -38,17 +38,17 @@ table thead tr th{
 
   .btns button {
     background-color: #DFEAE6;
-    color: grey;
+    color: #3754a4;
     padding: 8px 16px; 
     border: none; 
     cursor: pointer; 
     border-radius: 4px; 
-    border: 1px solid #326A55;
+    /* border: 1px solid #3754a4; */
 }
 
 .btns button:hover {
-    background-color: #fff;
-    color: #326A55;
+    background-color: #3754a4;
+    color: #DFEAE6;
   }
 
   .pagination {
