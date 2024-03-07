@@ -19,9 +19,11 @@
   gap: 2rem;
   align-items: center;
   text-align: center;
+  text-decoration: none;
 }
 
-.nav_link {
+
+.nav_items a {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,9 +39,10 @@
   font-weight: 500;
 }
 
-.nav_link.active {
+a.active {
   background-color: #326A55;
-  color: black;
+  color: #f4f6f6;
+  text-decoration: none;
 }
 
 .nav_icon {

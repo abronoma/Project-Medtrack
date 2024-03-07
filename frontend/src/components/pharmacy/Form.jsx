@@ -25,6 +25,7 @@ function PharmacyForm() {
     { value: 'Tablet', label: 'Tablet' },
     { value: 'Capsule', label: 'Capsule' },
     { value: '1 ml', label: '1 ml' },
+    { value: '10 ml', label: '10 ml' },
     { value: '20 ml', label: '20 ml' },
     { value: '5 G', label: '5G' },
     { value: '2 G', label: '2G' },

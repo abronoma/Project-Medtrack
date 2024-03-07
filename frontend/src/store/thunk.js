@@ -1,5 +1,5 @@
 import { ADD_LABS, DELETE_LABS, FETCH_LAB, FETCH_LABS, FETCH_LABTYPE, UPDATE_LABS } from "./action/labActions";
-import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUG, FETCH_DRUGS, FETCH_PRICES, UPDATE_DRUGS } from "./action/pharmActions";
+import { ADD_DRUGS, DELETE_DRUGS, FETCH_DRUG, FETCH_DRUGS, FETCH_PRICES, FETCH_UNITS, UPDATE_DRUGS } from "./action/pharmActions";
 
 
 // pharmacy thunk
@@ -63,6 +63,21 @@ export const fetchPrice =  () => async (dispatch, getState) => {
         dispatch({ type: FETCH_PRICES, payload: response })
     } catch (error) {
         console.log("Could not fetch prices:", error);
+    }
+}
+
+export const fetchUnits =  () => async (dispatch, getState) => {
+    try {
+        const data = await fetch(`http://localhost:7000/api/unitPricing`, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        const response = await data.json()
+        dispatch({ type: FETCH_UNITS, payload: response })
+    } catch (error) {
+        console.log("Could not fetch units:", error);
     }
 }
 

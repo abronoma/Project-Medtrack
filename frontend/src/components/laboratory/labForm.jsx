@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import style from "../pharmacy/Form.module.css";
+import style from "./labForm.module.css";
 import { useDispatch } from "react-redux";
 import SearchButton from "../searchButton";
 import { toast } from "react-toastify";
@@ -19,7 +19,6 @@ function LabForm() {
   const [price, setPrice] = useState("");
   const [inputValue, setInputValue] = useState("");
 
-
   const labOptions = [
     { value: 'Laboratory', label: 'Laboratory' },
     { value: 'Radiology', label: 'Radiology' }
@@ -35,11 +34,8 @@ function LabForm() {
   ]
 
   // handling changes
-
   const handleInputChange = (event) => {
-    console.log(event)
     setInputValue(event);
-    console.log(inputValue)
    }
 
 
@@ -54,16 +50,6 @@ function LabForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-
-  
-  // const handleInputChange = (event) => {
-  //   console.log(event)
-  //   setInputValue(event);
-  //   console.log(inputValue)
-  // };
-
-
-
     const lab = {
       labItemName,
       labType,
@@ -98,7 +84,7 @@ function LabForm() {
       console.log(JSON.stringify(lab));
 
       // Display success message
-      toast.success("Lab entry added successfully!");
+      toast.success("Lab item added successfully!");
     }
   };
 
@@ -126,7 +112,7 @@ function LabForm() {
 
             <Creatable
               isClearable
-              className={style.input}
+              className={style.labType}
               style={{ width: "135px" }}
               id="labType"
               name="labType"
@@ -208,7 +194,7 @@ function LabForm() {
 
       </div>
 
-      <LabTable />
+      <LabTable searchValue={inputValue}/>
     </>
   );
 }

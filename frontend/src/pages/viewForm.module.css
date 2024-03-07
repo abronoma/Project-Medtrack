@@ -7,11 +7,11 @@
     border: 1px solid #F4F6F6;
     width: 500px;
     border-radius: 6px;
-    margin: 4rem auto;
-    margin-bottom: 4rem;
+    margin: 2rem auto;
     background-color: #F4F6F6;
     color: grey;
     padding: 1rem;
+    min-height: 90vh;
 }
 
 .viewContainer h2 {

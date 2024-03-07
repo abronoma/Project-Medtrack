@@ -14,15 +14,15 @@ export default function Header() {
         <p>MedTrack</p>
       </div>
       <div className={style.nav_items}>
-        <NavLink to="/" className={style.nav_link} activeClassName={style.active}>
+        <NavLink to="/" className={({ isActive }) => isActive ? style.active : "" }>
           <MdHome className={style.nav_icon} />
           <span>Home</span>
         </NavLink>
-        <NavLink to="/pharmacy" className={style.nav_link} activeClassName={style.active}>
+        <NavLink to="/pharmacy" className={({ isActive}) => isActive ? style.active : "" }>
           <MdLocalPharmacy className={style.nav_icon} />
           <span>Pharmacy</span>
         </NavLink>
-        <NavLink to="/laboratory" className={style.nav_link} activeClassName={style.active}>
+        <NavLink to="/laboratory" className={({ isActive}) => isActive ? style.active : "" }>
           <GiHypodermicTest className={style.nav_icon} />
           <span>Laboratory</span>
         </NavLink>

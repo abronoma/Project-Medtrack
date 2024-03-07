@@ -70,7 +70,8 @@ function Table({searchValue}) {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((drug) => (
+          {currentItems.length > 0 ? (
+            currentItems.map((drug) => (
             <tr key={drug._id}>
               <td>{drug.drugName}</td>
               <td>{truncateDescription(drug.description)}
@@ -82,7 +83,12 @@ function Table({searchValue}) {
                 <Ellipsis drugId={drug._id}/>
               </td>
             </tr>
-          ))}
+          ))
+        ): (
+          <tr>
+            <td colSpan="10">There are no items currently.</td>
+          </tr>
+        )}
         </tbody>
       </table>
       <div className={style.pagination}>
@@ -91,7 +97,6 @@ function Table({searchValue}) {
            {index + 1}
            </button>
         )
-         
         )}
       </div>
     </div>
