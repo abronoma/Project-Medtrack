@@ -78,7 +78,6 @@ export const getLabType = async (req, res) => {
                 },
             },
         ]);
-        console.log(labCount);
 
         if (!labCount || labCount.length === 0) {
             return res.status(404).json({ message: "Lab not found" })
@@ -91,7 +90,6 @@ export const getLabType = async (req, res) => {
             },
             {}
         )
-        console.log(labAccumulator);
         res.status(200).json(labAccumulator);
     } catch (error) {
         console.log(error);

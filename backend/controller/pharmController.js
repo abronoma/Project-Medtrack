@@ -72,37 +72,45 @@ export const deleteDrug = async (req, res) => {
 // fetching data for pie chart
 export const getPrice = async (req, res) => {
     try {
-        const topExpensiveDrugs = await pharmacy.aggregate([
-            {
-                $group: {
-                    _id: { price: '$price', drugName: '$drugName' },
-                    count: { $sum: 1},
-                },
-            },
-            {
-               $sort: { 'count': -1 } 
-            },
-            {
-                $limit: 5
-            },
-        ]);
-        console.log(topExpensiveDrugs);
+      
+        const top5ExpensiveDrugs = await pharmacy.find().sort({price: -1}).limit(5);
 
-        if (!topExpensiveDrugs || topExpensiveDrugs.length === 0) {
+        if (!top5ExpensiveDrugs || top5ExpensiveDrugs.length === 0) {
             return res.status(404).json({ message: "Prices not found" })
         }
 
-        const priceAccumulator = topExpensiveDrugs.reduce(
+        // console.log(top5ExpensiveDrugs);
+        res.status(200).json(top5ExpensiveDrugs);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error.message})
+    }
+}
+
+export const getUnit = async (req, res) => {
+    try {
+        const units = await pharmacy.aggregate([
+            {
+                $group: {
+                    _id: "$unitOfPricing",
+                    count: { $sum: 1 }
+                }
+            },
+        ])
+        
+        if (!units || units.length === 0) {
+            return res.status(404).json({ message: "Units not found" })
+        }
+
+        const highestUnitsOfPricing = units.reduce(
             (acc, {_id, count }) => {
-                const { price, drugName } = _id;
-                const key = `${price} - ${drugName}`;
-                acc[key] = count;
+                acc[_id] = count;
                 return acc;
             },
             {}
         )
-        console.log(priceAccumulator);
-        res.status(200).json(priceAccumulator);
+
+        res.status(200).json(highestUnitsOfPricing)
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: error.message})
