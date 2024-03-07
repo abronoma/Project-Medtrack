@@ -26,7 +26,6 @@ function LabTable({ searchValue }) {
 
   useEffect(() => {
     if (searchValue !== "") {
-      console.log(searchValue);
       const filteredLabs = filterLabsBySearchTerm(labs, searchValue);
       setSearchLabs(filteredLabs);
     } else {
@@ -58,12 +57,13 @@ function LabTable({ searchValue }) {
             <th>Category</th>
             <th>Sub Category</th>
             <th>Code</th>
-            <th>Price</th>
+            <th>Price(GH₵)</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((lab) => (
+          {currentItems.length > 0 ? (
+            currentItems.map((lab) => (
             <tr key={lab._id}>
               <td>{lab.labItemName}</td>
               <td>{lab.labType}</td>
@@ -75,7 +75,12 @@ function LabTable({ searchValue }) {
                 <Ellipsis labId={lab._id} />
               </td>
             </tr>
-          ))}
+          ))
+        ): (
+          <tr>
+            <td colSpan="10" >There are no items currently.</td>
+          </tr>
+        )}
         </tbody>
       </table>
       <div className={style.pagination}>

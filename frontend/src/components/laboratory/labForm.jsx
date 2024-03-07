@@ -18,8 +18,6 @@ function LabForm() {
   const [labItemCode, setlabItemCode] = useState("");
   const [price, setPrice] = useState("");
   const [inputValue, setInputValue] = useState("");
-  console.log({inputValue});
-
 
   const labOptions = [
     { value: 'Laboratory', label: 'Laboratory' },
@@ -36,11 +34,8 @@ function LabForm() {
   ]
 
   // handling changes
-
   const handleInputChange = (event) => {
-    console.log(event)
     setInputValue(event);
-    console.log(inputValue)
    }
 
 
@@ -55,7 +50,6 @@ function LabForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-
     const lab = {
       labItemName,
       labType,
@@ -90,7 +84,7 @@ function LabForm() {
       console.log(JSON.stringify(lab));
 
       // Display success message
-      toast.success("Lab entry added successfully!");
+      toast.success("Lab item added successfully!");
     }
   };
 

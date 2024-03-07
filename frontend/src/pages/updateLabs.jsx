@@ -119,7 +119,7 @@ function UpdateLabs() {
 
           <div className={style.marginBottom}>
             <label htmlFor="subCategory" className={style.label}>
-              Unit of Pricing
+              Sub-category
             </label>
             <input
               type="text"
